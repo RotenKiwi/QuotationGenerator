@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Screens/Urbania/insuranceType.dart';
-import '../../../Vehicles/Traveller/Traveller-Passenger-NonAC.dart';
+import '../../../Vehicles/Traveller/Traveller-Passenger-AC.dart';
 import '../../../Vehicles/Urbania/pdf/model_info.dart' as model;
 import '../../../Components/RoundedButton.dart';
 import '../../../Components/TopBar.dart';
@@ -12,7 +12,7 @@ class TravellerPassengerNonACModelSelect extends StatefulWidget {
   State<TravellerPassengerNonACModelSelect> createState() => _TravellerPassengerNonACModelSelectState();
 }
 
-String selectedValue = TravellerPassengerNonAC().model[0];
+String selectedValue = TravellerPassengerAC().model[0];
 int index = 0;
 //String selectedColor = TravellerPassengerNonAC().colors[0];
 //int colorIndex = 0;
@@ -21,8 +21,8 @@ class _TravellerPassengerNonACModelSelectState extends State<TravellerPassengerN
   @override
   Widget build(BuildContext context) {
 
-    model.model = TravellerPassengerNonAC().model[index];
-    model.price = TravellerPassengerNonAC().price[index];
+    model.model = TravellerPassengerAC().model[index];
+    model.price = TravellerPassengerAC().price[index];
     //model.color = Urbania().colors[colorIndex];
     //model.insurance = (model.price! * 0.0215).ceil();
     return LayoutBuilder(
@@ -63,7 +63,7 @@ class _TravellerPassengerNonACModelSelectState extends State<TravellerPassengerN
                             child: DropdownButton<String>(
                               menuMaxHeight: constraint.maxHeight * 0.3,
                               value: selectedValue,
-                              items: TravellerPassengerNonAC().model.map((String value) {
+                              items: TravellerPassengerAC().model.map((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
                                   child: Text(value),
@@ -73,11 +73,11 @@ class _TravellerPassengerNonACModelSelectState extends State<TravellerPassengerN
                                 setState(
                                       () {
                                     selectedValue = '${value}';
-                                    index = TravellerPassengerNonAC()
+                                    index = TravellerPassengerAC()
                                         .model
                                         .indexOf('${selectedValue}');
-                                    model.model = TravellerPassengerNonAC().model[index];
-                                    model.price = TravellerPassengerNonAC().price[index];
+                                    model.model = TravellerPassengerAC().model[index];
+                                    model.price = TravellerPassengerAC().price[index];
                                     //model.insurance = (model.price! * 0.0215).ceil();
                                   },
                                 );
