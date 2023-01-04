@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/TopBar.dart';
-import 'package:sp_quotation/Screens/Urbania/insuranceType.dart';
 import 'package:sp_quotation/Screens/Urbania/registrationExpenseType.dart';
 import 'package:sp_quotation/Vehicles/Urbania/Urbania.dart';
-import 'package:sp_quotation/Vehicles/Urbania/pdf/pdfpage.dart';
-import '../../Vehicles/Urbania/pdf/userDetails.dart' as user;
 import '../../Vehicles/Urbania/pdf/model_info.dart' as model;
 import '../../Components/RoundedButton.dart';
-import '../../Vehicles/Urbania/pdf/pdf_page.dart';
 import 'otherCharges.dart';
 
 class registrationExpense extends StatefulWidget {
@@ -44,12 +40,6 @@ class _registrationExpenseState extends State<registrationExpense> {
                         registrationexpense = value.toString();
                         model.registrationExpense = value;
                         model.registrationType = 'Commercial';
-                        if(model.insuranceType != 'Customer'){
-                          if(widget.insurancetype == "Priv"){model.rtoTax = (model.price!*0.1475).ceil();}
-                          else if (widget.insurancetype == "T&T"){model.rtoTax = Urbania().rtoTaxTT[index];}
-                          else if (widget.insurancetype == "PPRS"){model.rtoTax = Urbania().rtoTaxStaff[index];}
-                          else{model.rtoTax = 0;}
-                        }
                       });
                       print(model.insuranceType);
                     }),
@@ -83,7 +73,15 @@ class _registrationExpenseState extends State<registrationExpense> {
                   setState(() {
                     errorMessage = 'Select valid option';
                   });
-                }else{Navigator.push(context,
+                }else{
+                  if(model.insuranceType != 'Customer'){
+                    if(widget.insurancetype == "Priv"){model.rtoTax = (model.price!*0.16).ceil();}
+                    else if (widget.insurancetype == "T&T"){model.rtoTax = Urbania().rtoTaxTT[index];}
+                    else if (widget.insurancetype == "PPRS"){model.rtoTax = Urbania().rtoTaxStaff[index];}
+                    else{model.rtoTax = 0;}
+                  }
+                  print(model.rtoTax);
+                  Navigator.push(context,
                     MaterialPageRoute(builder: (context) => otherCharge()));}
 
               },

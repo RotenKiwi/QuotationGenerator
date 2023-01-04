@@ -72,5 +72,5 @@ var calcTotalCharges = () {
 };
 
 var finalCharge = () {
-  return (totalCharges + price);
+  return (totalCharges + price + otherCharges!);
 };

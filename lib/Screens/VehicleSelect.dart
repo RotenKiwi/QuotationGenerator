@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/RoundedButton.dart';
-import 'package:sp_quotation/Screens/Gurkha/Client_Details.dart';
 import 'package:sp_quotation/Screens/Urbania/modelSelect.dart';
 
+import 'Traveller/CustomerInfo.dart';
 import 'Urbania/CustomerInfo.dart';
 
 class VehicleSelect extends StatefulWidget {
@@ -34,16 +34,6 @@ class _VehicleSelectState extends State<VehicleSelect> {
           //     length: 0.85,
           //   ),
           // ),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(vertical: 10.0),
-          //   child: RoundedButton(
-          //     text: 'Traveller',
-          //     press: () {},
-          //     color: Colors.black,
-          //     textColor: Colors.white,
-          //     length: 0.85,
-          //   ),
-          // ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: RoundedButton(
@@ -51,6 +41,20 @@ class _VehicleSelectState extends State<VehicleSelect> {
               press: () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => Urbania_Client_Info()));
+              },
+              color: Colors.black,
+              textColor: Colors.white,
+              length: 0.85,
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: RoundedButton(
+              text: 'Traveller',
+              press: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Traveller_Client_Info()));
               },
               color: Colors.black,
               textColor: Colors.white,

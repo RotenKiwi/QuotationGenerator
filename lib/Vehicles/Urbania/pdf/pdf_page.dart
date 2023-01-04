@@ -705,7 +705,7 @@ class _pdfPageState extends State<pdfPage> {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        (model.otherCharges!=null)?'${model.otherCharges}':'0',
+                        (model.otherCharges!=0)?'${model.otherCharges}':'0',
                         style: const TextStyle(
                           fontSize: 10,
                           decoration: TextDecoration.none,
