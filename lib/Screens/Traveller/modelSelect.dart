@@ -1,31 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Screens/Urbania/insuranceType.dart';
-import 'package:sp_quotation/Screens/Urbania/registrationExpense.dart';
-import 'package:sp_quotation/Screens/Urbania/registrationType.dart';
 import 'package:sp_quotation/Vehicles/Urbania/Urbania.dart';
+import '../../Vehicles/Traveller/Traveller-Passenger-NonAC.dart';
 import '../../Vehicles/Urbania/pdf/model_info.dart' as model;
-import '../../Components/FormField.dart';
 import '../../Components/RoundedButton.dart';
 import '../../Components/TopBar.dart';
 
-class UrbaniaModelSelect extends StatefulWidget {
-  const UrbaniaModelSelect({Key? key}) : super(key: key);
+class TravellerModelSelect extends StatefulWidget {
+  final String TravellerType;
+  const TravellerModelSelect({Key? key, required this.TravellerType}) : super(key: key);
 
   @override
-  State<UrbaniaModelSelect> createState() => _UrbaniaModelSelectState();
+  State<TravellerModelSelect> createState() => _TravellerModelSelectState();
 }
 
-String selectedValue = Urbania().model[0];
+String selectedValue = TravellerPassengerNonAC().model[0];
 int index = 0;
-String selectedColor = Urbania().colors[0];
-int colorIndex = 0;
+//String selectedColor = TravellerPassengerNonAC().colors[0];
+//int colorIndex = 0;
 
-class _UrbaniaModelSelectState extends State<UrbaniaModelSelect> {
+class _TravellerModelSelectState extends State<TravellerModelSelect> {
   @override
   Widget build(BuildContext context) {
+
+    (widget.TravellerType == 'Passenger (Non-AC)')? model.model = TravellerPassengerNonAC().model[index] :
+    (widget.TravellerType == 'Passenger (AC)')? model.model = TravellerPassengerAC().model[index] :
+    model.model = TravellerSchoolBusNonAC().model[index] ;
+
     model.model = Urbania().model[index];
     model.price = Urbania().price[index];
-    model.color = Urbania().colors[colorIndex];
+    //model.color = Urbania().colors[colorIndex];
     //model.insurance = (model.price! * 0.0215).ceil();
     return LayoutBuilder(
       builder: (context, constraint) {
@@ -89,51 +93,49 @@ class _UrbaniaModelSelectState extends State<UrbaniaModelSelect> {
                         ),
                       ),
                     ),
-                    // formField(
-                    //     text: 'Colour',
-                    //     horizontalPadding: constraint.maxWidth * 0.075,
-                    //     maxWidth: constraint.maxWidth),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: constraint.maxWidth * 0.075,
-                          vertical: 15.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 1,
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10.0, vertical: 5),
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton<String>(
-                              menuMaxHeight: constraint.maxHeight * 0.3,
-                              value: selectedColor,
-                              items: Urbania().colors.map((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList(),
-                              onChanged: (value) {
-                                setState(
-                                      () {
-                                    selectedColor = '${value}';
-                                    colorIndex = Urbania()
-                                        .colors
-                                        .indexOf('${selectedColor}');
-                                    model.color = Urbania().colors[colorIndex];
-                                  },
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+
+                    // Padding(
+                    //   padding: EdgeInsets.symmetric(
+                    //       horizontal: constraint.maxWidth * 0.075,
+                    //       vertical: 15.0),
+                    //   child: Container(
+                    //     decoration: BoxDecoration(
+                    //       borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    //       border: Border.all(
+                    //         color: Colors.black,
+                    //         width: 1,
+                    //       ),
+                    //     ),
+                    //     child: Padding(
+                    //       padding: const EdgeInsets.symmetric(
+                    //           horizontal: 10.0, vertical: 5),
+                    //       child: DropdownButtonHideUnderline(
+                    //         child: DropdownButton<String>(
+                    //           menuMaxHeight: constraint.maxHeight * 0.3,
+                    //           value: selectedColor,
+                    //           items: Urbania().colors.map((String value) {
+                    //             return DropdownMenuItem<String>(
+                    //               value: value,
+                    //               child: Text(value),
+                    //             );
+                    //           }).toList(),
+                    //           onChanged: (value) {
+                    //             setState(
+                    //                   () {
+                    //                 selectedColor = '${value}';
+                    //                 colorIndex = Urbania()
+                    //                     .colors
+                    //                     .indexOf('${selectedColor}');
+                    //                 model.color = Urbania().colors[colorIndex];
+                    //               },
+                    //             );
+                    //           },
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+
                     SizedBox(
                       height: constraint.maxHeight * 0.02,
                     ),
