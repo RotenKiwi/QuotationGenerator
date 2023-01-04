@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Screens/Urbania/insuranceType.dart';
 import '../../../Vehicles/Traveller/Traveller-Passenger-AC.dart';
-import '../../../Vehicles/Urbania/pdf/model_info.dart' as model;
+import '../../../Vehicles/Traveller/pdf/model_info.dart' as model;
 import '../../../Components/RoundedButton.dart';
 import '../../../Components/TopBar.dart';
 
