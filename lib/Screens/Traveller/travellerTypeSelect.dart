@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/RoundedButton.dart';
-import 'package:sp_quotation/Screens/Urbania/modelSelect.dart';
-
-import '../../Vehicles/Traveller/Traveller-SchoolBus-NonAC.dart';
+import 'modelSelect/TravellerPassengerACmodelSelect.dart';
 import 'modelSelect/TravellerPassengerNonACmodelSelect.dart';
+import 'modelSelect/TravellerSchoolBusNonAC.dart';
 
 class TravellerTypeSelect extends StatefulWidget {
   const TravellerTypeSelect({Key? key}) : super(key: key);
@@ -59,7 +58,7 @@ class _TravellerTypeSelectState extends State<TravellerTypeSelect> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => TravellerSchoolbusNonAC()));
+                        builder: (context) => TravellerSchoolBusNonACSelect()));
               },
               color: Colors.black,
               textColor: Colors.white,
