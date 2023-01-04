@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/RoundedButton.dart';
 import 'package:sp_quotation/Screens/Urbania/modelSelect.dart';
 
+import '../../Vehicles/Traveller/Traveller-SchoolBus-NonAC.dart';
 import 'modelSelect/TravellerPassengerNonACmodelSelect.dart';
 
 class TravellerTypeSelect extends StatefulWidget {
@@ -43,7 +44,7 @@ class _TravellerTypeSelectState extends State<TravellerTypeSelect> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => TravellerModelSelect()));
+                        builder: (context) => TravellerPassengerACModelSelect()));
               },
               color: Colors.black,
               textColor: Colors.white,
@@ -58,7 +59,7 @@ class _TravellerTypeSelectState extends State<TravellerTypeSelect> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => TravellerModelSelect()));
+                        builder: (context) => TravellerSchoolbusNonAC()));
               },
               color: Colors.black,
               textColor: Colors.white,

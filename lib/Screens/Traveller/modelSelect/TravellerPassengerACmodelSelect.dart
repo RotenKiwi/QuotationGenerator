@@ -5,11 +5,11 @@ import '../../../Vehicles/Urbania/pdf/model_info.dart' as model;
 import '../../../Components/RoundedButton.dart';
 import '../../../Components/TopBar.dart';
 
-class TravellerPassengerNonACModelSelect extends StatefulWidget {
-  const TravellerPassengerNonACModelSelect({Key? key,}) : super(key: key);
+class TravellerPassengerACModelSelect extends StatefulWidget {
+  const TravellerPassengerACModelSelect({Key? key,}) : super(key: key);
 
   @override
-  State<TravellerPassengerNonACModelSelect> createState() => _TravellerPassengerNonACModelSelectState();
+  State<TravellerPassengerACModelSelect> createState() => _TravellerPassengerACModelSelectState();
 }
 
 String selectedValue = TravellerPassengerAC().model[0];
@@ -17,7 +17,7 @@ int index = 0;
 //String selectedColor = TravellerPassengerNonAC().colors[0];
 //int colorIndex = 0;
 
-class _TravellerPassengerNonACModelSelectState extends State<TravellerPassengerNonACModelSelect> {
+class _TravellerPassengerACModelSelectState extends State<TravellerPassengerACModelSelect> {
   @override
   Widget build(BuildContext context) {
 

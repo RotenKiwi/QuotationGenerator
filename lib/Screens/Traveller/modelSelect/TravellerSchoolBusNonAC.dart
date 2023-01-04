@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Screens/Urbania/insuranceType.dart';
-import '../../../Vehicles/Traveller/Traveller-Passenger-AC.dart';
+import '../../../Vehicles/Traveller/Traveller-SchoolBus-NonAC.dart';
 import '../../../Vehicles/Urbania/pdf/model_info.dart' as model;
 import '../../../Components/RoundedButton.dart';
 import '../../../Components/TopBar.dart';
 
-class TravellerPassengerNonACModelSelect extends StatefulWidget {
-  const TravellerPassengerNonACModelSelect({Key? key,}) : super(key: key);
+class TravellerSchoolBusNonACSelect extends StatefulWidget {
+  const TravellerSchoolBusNonACSelect({Key? key,}) : super(key: key);
 
   @override
-  State<TravellerPassengerNonACModelSelect> createState() => _TravellerPassengerNonACModelSelectState();
+  State<TravellerSchoolBusNonACSelect> createState() => _TravellerSchoolBusNonACSelectSelectState();
 }
 
-String selectedValue = TravellerPassengerAC().model[0];
+String selectedValue = TravellerSchoolbusNonAC().model[0];
 int index = 0;
 //String selectedColor = TravellerPassengerNonAC().colors[0];
 //int colorIndex = 0;
 
-class _TravellerPassengerNonACModelSelectState extends State<TravellerPassengerNonACModelSelect> {
+class _TravellerSchoolBusNonACSelectSelectState extends State<TravellerSchoolBusNonACSelect> {
   @override
   Widget build(BuildContext context) {
 
-    model.model = TravellerPassengerAC().model[index];
-    model.price = TravellerPassengerAC().price[index];
+    model.model = TravellerSchoolbusNonAC().model[index];
+    model.price = TravellerSchoolbusNonAC().price[index];
     //model.color = Urbania().colors[colorIndex];
     //model.insurance = (model.price! * 0.0215).ceil();
     return LayoutBuilder(
@@ -63,7 +63,7 @@ class _TravellerPassengerNonACModelSelectState extends State<TravellerPassengerN
                             child: DropdownButton<String>(
                               menuMaxHeight: constraint.maxHeight * 0.3,
                               value: selectedValue,
-                              items: TravellerPassengerAC().model.map((String value) {
+                              items: TravellerSchoolbusNonAC().model.map((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
                                   child: Text(value),
@@ -73,11 +73,11 @@ class _TravellerPassengerNonACModelSelectState extends State<TravellerPassengerN
                                 setState(
                                       () {
                                     selectedValue = '${value}';
-                                    index = TravellerPassengerAC()
+                                    index = TravellerSchoolbusNonAC()
                                         .model
                                         .indexOf('${selectedValue}');
-                                    model.model = TravellerPassengerAC().model[index];
-                                    model.price = TravellerPassengerAC().price[index];
+                                    model.model = TravellerSchoolbusNonAC().model[index];
+                                    model.price = TravellerSchoolbusNonAC().price[index];
                                     //model.insurance = (model.price! * 0.0215).ceil();
                                   },
                                 );
