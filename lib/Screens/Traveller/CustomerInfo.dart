@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/FormField.dart';
 import 'package:sp_quotation/Components/RoundedButton.dart';
 import 'package:sp_quotation/Components/TopBar.dart';
+import 'package:sp_quotation/Screens/Traveller/travellerTypeSelect.dart';
 import 'package:sp_quotation/Screens/Urbania/modelSelect.dart';
 import '../../Vehicles/Urbania/pdf/userDetails.dart' as user;
 
@@ -78,7 +79,7 @@ class Traveller_Client_InfoState extends State<Traveller_Client_Info> {
                   if(user.name != null && user.location!=null && user.contactNo!=null && user.bankHP!=null ){
                     if(user.contactNo!.length == 10){
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => UrbaniaModelSelect()));
+                          MaterialPageRoute(builder: (context) => TravellerTypeSelect()));
                     }
                     else{
                       setState(() {
