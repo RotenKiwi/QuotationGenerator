@@ -18,9 +18,9 @@ class TravellerPassengerAC {
   List<int> rtoTaxStaff = [
     2000 * 13,
     2000 * 17,
-    1000 * 20,
-    1000 * 22,
-    1000 * 25,
+    2000 * 20,
+    2000 * 22,
+    2000 * 25,
   ];
 
   List<int> rtoTaxTT = [
