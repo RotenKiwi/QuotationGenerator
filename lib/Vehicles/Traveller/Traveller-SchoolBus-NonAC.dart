@@ -1,8 +1,8 @@
 class TravellerSchoolbusNonAC {
   List<String> model = [
-    'T1 SCB 3350  17 Seater+Driver PS ABS FDSS Vinyl Non AC',
-    'T1 SCB 3700  17 Seater+Driver PS ABS FDSS Vinyl Non AC',
-    'T1 SCB 4020  20 Seater+Driver PS ABS FDSS Vinyl Non AC',
+    'T1 SCB 3350  17 Seater+Driver ',
+    'T1 SCB 3700  17 Seater+Driver ',
+    'T1 SCB 4020  20 Seater+Driver ',
   ];
 
   List<int> price = [

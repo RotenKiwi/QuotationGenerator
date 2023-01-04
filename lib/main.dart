@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Screens/LoginScreen.dart';
+import 'Screens/Traveller/travellerTypeSelect.dart';
 import 'Screens/VehicleSelect.dart';
 
 void main() {
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      //home: LoginScreen(),
+      home: TravellerTypeSelect(),
     );
   }
 }
