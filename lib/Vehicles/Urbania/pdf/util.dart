@@ -2,10 +2,8 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
-import 'package:open_file/open_file.dart';
 import 'dart:io';
 import 'package:printing/printing.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 import '../Urbania.dart';
 import 'userDetails.dart' as user;
@@ -1060,6 +1058,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
       ),
     ],
   ));
+
   return doc.save();
 }
 
@@ -1072,18 +1071,16 @@ Future<pw.PageTheme> _myPageTheme(PdfPageFormat format) async {
   );
 }
 
+
+
 Future<void> saveAsFile(
   final BuildContext context,
   final LayoutCallback build,
   final PdfPageFormat pdfPageFormat,
 ) async {
   final bytes = await build(pdfPageFormat);
-  final appDocDir = await getApplicationDocumentsDirectory();
-  final appDocPath = appDocDir.path;
-  final file = File('$appDocPath/document.pdf');
-  print('save file as ${file.path}');
+  final file = File('example.pdf');
   await file.writeAsBytes(bytes);
-  await OpenFile.open(file.path);
 }
 
 void showPrintedToast(final BuildContext context) {

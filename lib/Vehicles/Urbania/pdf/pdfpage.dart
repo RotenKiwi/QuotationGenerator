@@ -32,12 +32,11 @@ class _pdfPage2State extends State<pdfPage2> {
   @override
   Widget build(BuildContext context) {
     pw.RichText.debug=true;
-    if(!kIsWeb)
-      PdfPreviewAction(icon: Icon(Icons.save), onPressed: saveAsFile,);
-    return Scaffold(
+    // if(!kIsWeb)
+      //PdfPreviewAction(icon: Icon(Icons.save), onPressed: saveAsFile,);
+    return  Scaffold(
       body: PdfPreview(
         maxPageWidth: 700,
-        actions: [],
         onPrinted: showPrintedToast,
         onShared: showSharedToast,
         build: generatePdf,
