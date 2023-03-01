@@ -39,6 +39,4 @@ class Gurkha_4X4_BSVI_FM2_6CR2400WB {
     6250,
     1650,
   ];
-
 }
-
