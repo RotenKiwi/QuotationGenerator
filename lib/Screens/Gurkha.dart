@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sp_quotation/Components/TopBar.dart';
 
 class Gurkha extends StatelessWidget {
   const Gurkha({Key? key}) : super(key: key);
@@ -10,10 +11,11 @@ class Gurkha extends StatelessWidget {
         builder: (context, constraint) {
           return Column(
             children: [
-              SizedBox(
+              Container(
+                //color: Colors.black,
                 height: constraint.maxHeight * 0.07,
               ),
-
+              topBar(text: 'Client Details', maxWidth: constraint.maxWidth,),
             ],
           );
         },
