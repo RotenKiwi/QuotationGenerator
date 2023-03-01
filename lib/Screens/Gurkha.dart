@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/FormField.dart';
+import 'package:sp_quotation/Components/RoundedButton.dart';
 import 'package:sp_quotation/Components/TopBar.dart';
 
 class Gurkha extends StatelessWidget {
@@ -40,6 +41,19 @@ class Gurkha extends StatelessWidget {
                         maxWidth: constraint.maxWidth),
                   ],
                 ),
+              ),
+              SizedBox(
+                height: constraint.maxWidth * 0.05,
+              ),
+              RoundedButton(
+                text: 'Next',
+                press: () {},
+                color: Colors.black,
+                textColor: Colors.white,
+                length: 0.85,
+              ),
+              SizedBox(
+                height: constraint.maxWidth * 0.1,
               ),
             ],
           );
