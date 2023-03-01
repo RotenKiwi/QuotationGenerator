@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/RoundedButton.dart';
+import 'package:sp_quotation/Screens/Gurkha.dart';
 
 class VehicleSelect extends StatefulWidget {
   const VehicleSelect({Key? key}) : super(key: key);
@@ -19,11 +20,26 @@ class _VehicleSelectState extends State<VehicleSelect> {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child: RoundedButton(text: 'Gurkha', press: () {  }, color: Colors.black, textColor: Colors.white, length: 0.85,),
+            child: RoundedButton(
+              text: 'Gurkha',
+              press: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Gurkha()));
+              },
+              color: Colors.black,
+              textColor: Colors.white,
+              length: 0.85,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child: RoundedButton(text: 'Traveller', press: () {  }, color: Colors.black, textColor: Colors.white, length: 0.85,),
+            child: RoundedButton(
+              text: 'Traveller',
+              press: () {},
+              color: Colors.black,
+              textColor: Colors.white,
+              length: 0.85,
+            ),
           ),
         ],
       ),
