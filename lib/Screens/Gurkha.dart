@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sp_quotation/Components/FormField.dart';
 import 'package:sp_quotation/Components/TopBar.dart';
 
 class Gurkha extends StatelessWidget {
@@ -11,11 +12,35 @@ class Gurkha extends StatelessWidget {
         builder: (context, constraint) {
           return Column(
             children: [
-              Container(
+              SizedBox(
                 //color: Colors.black,
                 height: constraint.maxHeight * 0.07,
               ),
-              topBar(text: 'Client Details', maxWidth: constraint.maxWidth,),
+              topBar(
+                text: 'Client Details',
+                maxWidth: constraint.maxWidth,
+              ),
+              SizedBox(
+                height: constraint.maxHeight * 0.1,
+              ),
+              Expanded(
+                child: ListView(
+                  children: [
+                    formField(
+                        text: 'Name',
+                        horizontalPadding: 10,
+                        maxWidth: constraint.maxWidth),
+                    formField(
+                        text: 'Location',
+                        horizontalPadding: 10,
+                        maxWidth: constraint.maxWidth),
+                    formField(
+                        text: 'Contact Number',
+                        horizontalPadding: 10,
+                        maxWidth: constraint.maxWidth),
+                  ],
+                ),
+              ),
             ],
           );
         },
