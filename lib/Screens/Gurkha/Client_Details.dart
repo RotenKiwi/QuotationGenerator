@@ -26,6 +26,7 @@ class Gurkha extends StatelessWidget {
               ),
               Expanded(
                 child: ListView(
+                  padding: EdgeInsets.zero,
                   children: [
                     formField(
                         text: 'Name',
@@ -37,6 +38,10 @@ class Gurkha extends StatelessWidget {
                         maxWidth: constraint.maxWidth),
                     formField(
                         text: 'Contact Number',
+                        horizontalPadding: 10,
+                        maxWidth: constraint.maxWidth),
+                    formField(
+                        text: 'Bank HP',
                         horizontalPadding: 10,
                         maxWidth: constraint.maxWidth),
                   ],

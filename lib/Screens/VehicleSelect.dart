@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/RoundedButton.dart';
-import 'package:sp_quotation/Screens/Gurkha.dart';
+import 'package:sp_quotation/Screens/Gurkha/Client_Details.dart';
 
 class VehicleSelect extends StatefulWidget {
   const VehicleSelect({Key? key}) : super(key: key);
