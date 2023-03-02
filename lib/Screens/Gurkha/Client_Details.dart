@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/FormField.dart';
 import 'package:sp_quotation/Components/RoundedButton.dart';
 import 'package:sp_quotation/Components/TopBar.dart';
+import 'package:sp_quotation/Screens/Gurkha/ModelDetails.dart';
 
 class Gurkha extends StatelessWidget {
   const Gurkha({Key? key}) : super(key: key);
@@ -52,7 +53,10 @@ class Gurkha extends StatelessWidget {
               ),
               RoundedButton(
                 text: 'Next',
-                press: () {},
+                press: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ModelDetails()));
+                },
                 color: Colors.black,
                 textColor: Colors.white,
                 length: 0.85,

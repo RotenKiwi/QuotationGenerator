@@ -1,13 +1,13 @@
 int GST(int price) {
-  return price * 0.28.toInt().ceil();
+  return (price * 0.28).ceil();
 }
 
 int Cess(int price) {
-  return price * 0.2.toInt().ceil();
+  return (price * 0.2).ceil();
 }
 
-int TCS(int price) {
-  return price * 0.01.toInt().ceil();
+int TCS(int price, int gst, int cess) {
+  return ((price + gst + cess) * 0.01).ceil();
 }
 
 int exShowroomPrice(int price, int gst, int cess, int tcs) {
@@ -15,15 +15,15 @@ int exShowroomPrice(int price, int gst, int cess, int tcs) {
 }
 
 int insurance(int exShowroomPrice) {
-  return exShowroomPrice * 0.45.toInt().ceil();
+  return (exShowroomPrice * 0.045).ceil();
 }
 
 int individualRegistrationExpense(int exShowroomPrice) {
-  return exShowroomPrice * 0.1475.toInt().ceil();
+  return (exShowroomPrice * 0.1475).ceil();
 }
 
 int corporateRegistrationExpense(int exShowroomPrice) {
-  return exShowroomPrice * 0.215.toInt().ceil();
+  return (exShowroomPrice * 0.215).ceil();
 }
 
 int onRoadPriceIndividual(
@@ -36,6 +36,6 @@ int onRoadPriceCorporate(
   return exShowroomPrice + insurance + corporateRegistrationExpense;
 }
 
-int onRoadPrice(int exShowroomPrice, int insurance, int registrationExpense, int accessoryTotal, int discount){
+int finalOnRoadPrice(int exShowroomPrice, int insurance, int registrationExpense, int accessoryTotal, int discount){
   return exShowroomPrice+insurance+registrationExpense+accessoryTotal-discount;
 }

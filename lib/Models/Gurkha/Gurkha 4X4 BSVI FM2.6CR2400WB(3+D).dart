@@ -1,10 +1,33 @@
 import 'package:flutter/material.dart';
 
-class Gurkha_4X4_BSVI_FM2_6CR2400WB {
-  String model = 'Gurkha 4X4 BSVI FM2.6CR2400WB(3+D)';
-  Color? colour;
+class Gurkha {
+  List<String> model = [
+    'Gurkha 4X4 BSVI FM2.6CR2400WB(3+D)',
+    'Model 2',
+    'Model 3',
+    'Model 4',
+    'Model 5',
+    'Model 6',
+    'Model 7',
+    'Model 8',
+    'Model 9',
+    'Model 10',
+  ];
 
-  int basicPrice = 1002361;
+  //Color? colour;
+
+  List<int> basicPrice = [
+    1002361,
+    1002362,
+    1002363,
+    1002364,
+    1002365,
+    1002366,
+    1002367,
+    1002368,
+    1002369,
+    1002360,
+  ];
 
   var Accessories = [
     'Alloy Wheels',
