@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/FormField.dart';
+import 'package:sp_quotation/Components/RoundedButton.dart';
 import 'package:sp_quotation/Components/TopBar.dart';
 import 'package:sp_quotation/Models/Gurkha/Gurkha%204X4%20BSVI%20FM2.6CR2400WB(3+D).dart';
+import 'package:sp_quotation/Screens/Gurkha/Accessories.dart';
 import 'package:sp_quotation/functions.dart';
 import 'package:sp_quotation/variables.dart' as vari;
 
@@ -20,17 +22,21 @@ int index = 0;
 class _ModelDetailsState extends State<ModelDetails> {
   @override
   Widget build(BuildContext context) {
-
     int basicPrice = Gurkha().basicPrice[index];
     vari.gst = GST(basicPrice);
     vari.cess = Cess(basicPrice);
     vari.tcs = TCS(basicPrice, vari.gst, vari.cess);
-    vari.exShowroomPrice = exShowroomPrice(basicPrice, vari.gst, vari.cess, vari.tcs);
+    vari.exShowroomPrice =
+        exShowroomPrice(basicPrice, vari.gst, vari.cess, vari.tcs);
     vari.insurance = insurance(vari.exShowroomPrice);
-    vari.individualRegistrationExpense = individualRegistrationExpense(vari.exShowroomPrice);
-    vari.corporateRegistrationExpense = corporateRegistrationExpense(vari.exShowroomPrice);
-    vari.individualOnRoad = onRoadPriceIndividual(vari.exShowroomPrice, vari.insurance, vari.individualRegistrationExpense);
-    vari.corporateOnRoad = onRoadPriceIndividual(vari.exShowroomPrice, vari.insurance, vari.corporateRegistrationExpense);
+    vari.individualRegistrationExpense =
+        individualRegistrationExpense(vari.exShowroomPrice);
+    vari.corporateRegistrationExpense =
+        corporateRegistrationExpense(vari.exShowroomPrice);
+    vari.individualOnRoad = onRoadPriceIndividual(vari.exShowroomPrice,
+        vari.insurance, vari.individualRegistrationExpense);
+    vari.corporateOnRoad = onRoadPriceIndividual(vari.exShowroomPrice,
+        vari.insurance, vari.corporateRegistrationExpense);
 
     return LayoutBuilder(
       builder: (context, constraint) {
@@ -98,65 +104,78 @@ class _ModelDetailsState extends State<ModelDetails> {
                     SizedBox(
                       height: constraint.maxHeight * 0.02,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        calculatedValues(
-                          fontSize: constraint.maxWidth * 0.04,
-                          text: 'Basic Price : ',
-                          value: basicPrice,
-                        ),
-                        calculatedValues(
-                          fontSize: constraint.maxWidth * 0.04,
-                          text: 'GST : ',
-                          value: vari.gst,
-                        ),
-                        calculatedValues(
-                          fontSize: constraint.maxWidth * 0.04,
-                          text: 'Cess : ',
-                          value: vari.cess,
-                        ),
-                        calculatedValues(
-                          fontSize: constraint.maxWidth * 0.04,
-                          text: 'TCS : ',
-                          value: vari.tcs,
-                        ),
-                        calculatedValues(
-                          fontSize: constraint.maxWidth * 0.04,
-                          text: 'ex-Showroom Price : ',
-                          value: vari.exShowroomPrice,
-                        ),
-                        calculatedValues(
-                          fontSize: constraint.maxWidth * 0.04,
-                          text: 'Insurance : ',
-                          value: vari.insurance,
-                        ),
-                        calculatedValues(
-                          fontSize: constraint.maxWidth * 0.04,
-                          text: 'Individual Registration Expense : ',
-                          value: vari.individualRegistrationExpense,
-                        ),
-                        calculatedValues(
-                          fontSize: constraint.maxWidth * 0.04,
-                          text: 'Corporate Registration Expense : ',
-                          value: vari.corporateRegistrationExpense,
-                        ),
-                        calculatedValues(
-                          fontSize: constraint.maxWidth * 0.04,
-                          text: 'On Road Price (Individual) : ',
-                          value: vari.individualOnRoad,
-                        ),
-                        calculatedValues(
-                          fontSize: constraint.maxWidth * 0.04,
-                          text: 'On Road Price (Corporate) : ',
-                          value: vari.corporateOnRoad,
-                        ),
-                      ],
-                    ),
+                    // Column(
+                    //   crossAxisAlignment: CrossAxisAlignment.center,
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     calculatedValues(
+                    //       fontSize: constraint.maxWidth * 0.04,
+                    //       text: 'Basic Price : ',
+                    //       value: basicPrice,
+                    //     ),
+                    //     calculatedValues(
+                    //       fontSize: constraint.maxWidth * 0.04,
+                    //       text: 'GST : ',
+                    //       value: vari.gst,
+                    //     ),
+                    //     calculatedValues(
+                    //       fontSize: constraint.maxWidth * 0.04,
+                    //       text: 'Cess : ',
+                    //       value: vari.cess,
+                    //     ),
+                    //     calculatedValues(
+                    //       fontSize: constraint.maxWidth * 0.04,
+                    //       text: 'TCS : ',
+                    //       value: vari.tcs,
+                    //     ),
+                    //     calculatedValues(
+                    //       fontSize: constraint.maxWidth * 0.04,
+                    //       text: 'ex-Showroom Price : ',
+                    //       value: vari.exShowroomPrice,
+                    //     ),
+                    //     calculatedValues(
+                    //       fontSize: constraint.maxWidth * 0.04,
+                    //       text: 'Insurance : ',
+                    //       value: vari.insurance,
+                    //     ),
+                    //     calculatedValues(
+                    //       fontSize: constraint.maxWidth * 0.04,
+                    //       text: 'Individual Registration Expense : ',
+                    //       value: vari.individualRegistrationExpense,
+                    //     ),
+                    //     calculatedValues(
+                    //       fontSize: constraint.maxWidth * 0.04,
+                    //       text: 'Corporate Registration Expense : ',
+                    //       value: vari.corporateRegistrationExpense,
+                    //     ),
+                    //     calculatedValues(
+                    //       fontSize: constraint.maxWidth * 0.04,
+                    //       text: 'On Road Price (Individual) : ',
+                    //       value: vari.individualOnRoad,
+                    //     ),
+                    //     calculatedValues(
+                    //       fontSize: constraint.maxWidth * 0.04,
+                    //       text: 'On Road Price (Corporate) : ',
+                    //       value: vari.corporateOnRoad,
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
-              )
+              ),
+              RoundedButton(
+                text: 'Next',
+                press: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Accessories()));
+                },
+                color: Colors.black,
+                textColor: Colors.white,
+                length: 0.85,
+              ),
+              SizedBox(
+                height: constraint.maxHeight * 0.1,
+              ),
             ],
           ),
         );

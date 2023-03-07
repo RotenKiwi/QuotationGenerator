@@ -7,3 +7,4 @@ int individualRegistrationExpense = 0;
 int corporateRegistrationExpense = 0;
 int individualOnRoad = 0;
 int corporateOnRoad = 0;
+int accessoriesTotal = 0;

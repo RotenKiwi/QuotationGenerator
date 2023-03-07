@@ -15,7 +15,7 @@ int exShowroomPrice(int price, int gst, int cess, int tcs) {
 }
 
 int insurance(int exShowroomPrice) {
-  return (exShowroomPrice * 0.045).ceil();
+  return (exShowroomPrice * 0.0451).ceil();
 }
 
 int individualRegistrationExpense(int exShowroomPrice) {
