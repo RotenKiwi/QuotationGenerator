@@ -5,13 +5,14 @@ class formField extends StatelessWidget {
   //final Color textColor;
   final double horizontalPadding;
   final double maxWidth;
+  final Function(String)? onChanged;
 
   const formField({
     super.key,
     required this.text,
     //required this.textColor,
     required this.horizontalPadding,
-    required this.maxWidth,
+    required this.maxWidth, this.onChanged,
   });
 
   @override
@@ -20,6 +21,7 @@ class formField extends StatelessWidget {
       padding:
           EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 15),
       child: TextFormField(
+        onChanged: onChanged,
         decoration: InputDecoration(
           border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(

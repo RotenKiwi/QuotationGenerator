@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/RoundedButton.dart';
 import 'package:sp_quotation/Components/TopBar.dart';
-import 'package:sp_quotation/Screens/Gurkha/pdf.dart';
 import 'package:sp_quotation/variables.dart' as vari;
 
-import '../../Models/Gurkha/Gurkha 4X4 BSVI FM2.6CR2400WB(3+D).dart';
+import '../../Vehicles/Gurkha/Gurkha 4X4 BSVI FM2.6CR2400WB(3+D).dart';
 
 class Accessories extends StatefulWidget {
   const Accessories({Key? key}) : super(key: key);
@@ -102,7 +101,8 @@ class _AccessoriesState extends State<Accessories> {
             RoundedButton(
                 text: 'Next',
                 press: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>pdf()));
+                  // Navigator.push(
+                  //     context, MaterialPageRoute(builder: (context) => pdf()));
                 },
                 color: Colors.black,
                 textColor: Colors.white,

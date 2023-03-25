@@ -1,7 +1,3 @@
-import 'dart:ffi';
-
-import 'package:flutter/material.dart';
-
 class Gurkha {
   List<String> model = [
     'Gurkha 4X4 BSVI FM2.6CR2400WB(3+D)',

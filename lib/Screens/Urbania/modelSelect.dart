@@ -1,43 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:sp_quotation/Components/FormField.dart';
-import 'package:sp_quotation/Components/RoundedButton.dart';
-import 'package:sp_quotation/Components/TopBar.dart';
-import 'package:sp_quotation/Vehicles/Gurkha/Gurkha%204X4%20BSVI%20FM2.6CR2400WB(3+D).dart';
-import 'package:sp_quotation/Screens/Gurkha/Accessories.dart';
-import 'package:sp_quotation/functions.dart';
-import 'package:sp_quotation/variables.dart' as vari;
+import 'package:sp_quotation/Screens/Urbania/registrationType.dart';
+import 'package:sp_quotation/Vehicles/Urbania/Urbania.dart';
+import '../../Vehicles/Urbania/pdf/model_info.dart' as model;
+import '../../Components/FormField.dart';
+import '../../Components/RoundedButton.dart';
+import '../../Components/TopBar.dart';
 
-import '../../Components/CustomDropDown.dart';
-
-class GurkhaModelDetails extends StatefulWidget {
-  const GurkhaModelDetails({Key? key}) : super(key: key);
+class UrbaniaModelSelect extends StatefulWidget {
+  const UrbaniaModelSelect({Key? key}) : super(key: key);
 
   @override
-  State<GurkhaModelDetails> createState() => _GurkhaModelDetailsState();
+  State<UrbaniaModelSelect> createState() => _UrbaniaModelSelectState();
 }
 
-String selectedValue = Gurkha().model[0];
+String selectedValue = Urbania().model[0];
 int index = 0;
 
-class _GurkhaModelDetailsState extends State<GurkhaModelDetails> {
+class _UrbaniaModelSelectState extends State<UrbaniaModelSelect> {
   @override
   Widget build(BuildContext context) {
-    int basicPrice = Gurkha().basicPrice[index];
-    vari.gst = GST(basicPrice);
-    vari.cess = Cess(basicPrice);
-    vari.tcs = TCS(basicPrice, vari.gst, vari.cess);
-    vari.exShowroomPrice =
-        exShowroomPrice(basicPrice, vari.gst, vari.cess, vari.tcs);
-    vari.insurance = insurance(vari.exShowroomPrice);
-    vari.individualRegistrationExpense =
-        individualRegistrationExpense(vari.exShowroomPrice);
-    vari.corporateRegistrationExpense =
-        corporateRegistrationExpense(vari.exShowroomPrice);
-    vari.individualOnRoad = onRoadPriceIndividual(vari.exShowroomPrice,
-        vari.insurance, vari.individualRegistrationExpense);
-    vari.corporateOnRoad = onRoadPriceIndividual(vari.exShowroomPrice,
-        vari.insurance, vari.corporateRegistrationExpense);
-
     return LayoutBuilder(
       builder: (context, constraint) {
         return Scaffold(
@@ -76,7 +57,7 @@ class _GurkhaModelDetailsState extends State<GurkhaModelDetails> {
                             child: DropdownButton<String>(
                               menuMaxHeight: constraint.maxHeight * 0.3,
                               value: selectedValue,
-                              items: Gurkha().model.map((String value) {
+                              items: Urbania().model.map((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
                                   child: Text(value),
@@ -86,9 +67,13 @@ class _GurkhaModelDetailsState extends State<GurkhaModelDetails> {
                                 setState(
                                   () {
                                     selectedValue = '${value}';
-                                    index = Gurkha()
+                                    index = Urbania()
                                         .model
                                         .indexOf('${selectedValue}');
+                                    model.model = Urbania().model[index];
+                                    model.price = Urbania().price[index];
+                                    model.insurance =
+                                        (model.price! * 0.0215).ceil();
                                   },
                                 );
                               },
@@ -166,8 +151,10 @@ class _GurkhaModelDetailsState extends State<GurkhaModelDetails> {
               RoundedButton(
                 text: 'Next',
                 press: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Accessories()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => registrationType()));
                 },
                 color: Colors.black,
                 textColor: Colors.white,
@@ -180,47 +167,6 @@ class _GurkhaModelDetailsState extends State<GurkhaModelDetails> {
           ),
         );
       },
-    );
-  }
-}
-
-class calculatedValues extends StatelessWidget {
-  const calculatedValues({
-    super.key,
-    required this.fontSize,
-    required this.text,
-    required this.value,
-  });
-
-  final double fontSize;
-  final String text;
-  final int value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 7.5, vertical: 5.0),
-          child: Text(
-            text,
-            style: TextStyle(
-              fontSize: fontSize,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 7.5, vertical: 5.0),
-          child: Text(
-            '${value} ',
-            style: TextStyle(
-              fontSize: fontSize,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
