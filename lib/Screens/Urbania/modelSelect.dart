@@ -19,6 +19,10 @@ int index = 0;
 class _UrbaniaModelSelectState extends State<UrbaniaModelSelect> {
   @override
   Widget build(BuildContext context) {
+    model.model = Urbania().model[index];
+    model.price = Urbania().price[index];
+    model.insurance = (model.price! * 0.0215).ceil();
+    model.rtoTax = Urbania().rtoTax[index];
     return LayoutBuilder(
       builder: (context, constraint) {
         return Scaffold(
@@ -72,8 +76,8 @@ class _UrbaniaModelSelectState extends State<UrbaniaModelSelect> {
                                         .indexOf('${selectedValue}');
                                     model.model = Urbania().model[index];
                                     model.price = Urbania().price[index];
-                                    model.insurance =
-                                        (model.price! * 0.0215).ceil();
+                                    model.insurance = (model.price! * 0.0215).ceil();
+                                    model.rtoTax = Urbania().rtoTax[index] as int?;
                                   },
                                 );
                               },
@@ -89,62 +93,6 @@ class _UrbaniaModelSelectState extends State<UrbaniaModelSelect> {
                     SizedBox(
                       height: constraint.maxHeight * 0.02,
                     ),
-                    // Column(
-                    //   crossAxisAlignment: CrossAxisAlignment.center,
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     calculatedValues(
-                    //       fontSize: constraint.maxWidth * 0.04,
-                    //       text: 'Basic Price : ',
-                    //       value: basicPrice,
-                    //     ),
-                    //     calculatedValues(
-                    //       fontSize: constraint.maxWidth * 0.04,
-                    //       text: 'GST : ',
-                    //       value: vari.gst,
-                    //     ),
-                    //     calculatedValues(
-                    //       fontSize: constraint.maxWidth * 0.04,
-                    //       text: 'Cess : ',
-                    //       value: vari.cess,
-                    //     ),
-                    //     calculatedValues(
-                    //       fontSize: constraint.maxWidth * 0.04,
-                    //       text: 'TCS : ',
-                    //       value: vari.tcs,
-                    //     ),
-                    //     calculatedValues(
-                    //       fontSize: constraint.maxWidth * 0.04,
-                    //       text: 'ex-Showroom Price : ',
-                    //       value: vari.exShowroomPrice,
-                    //     ),
-                    //     calculatedValues(
-                    //       fontSize: constraint.maxWidth * 0.04,
-                    //       text: 'Insurance : ',
-                    //       value: vari.insurance,
-                    //     ),
-                    //     calculatedValues(
-                    //       fontSize: constraint.maxWidth * 0.04,
-                    //       text: 'Individual Registration Expense : ',
-                    //       value: vari.individualRegistrationExpense,
-                    //     ),
-                    //     calculatedValues(
-                    //       fontSize: constraint.maxWidth * 0.04,
-                    //       text: 'Corporate Registration Expense : ',
-                    //       value: vari.corporateRegistrationExpense,
-                    //     ),
-                    //     calculatedValues(
-                    //       fontSize: constraint.maxWidth * 0.04,
-                    //       text: 'On Road Price (Individual) : ',
-                    //       value: vari.individualOnRoad,
-                    //     ),
-                    //     calculatedValues(
-                    //       fontSize: constraint.maxWidth * 0.04,
-                    //       text: 'On Road Price (Corporate) : ',
-                    //       value: vari.corporateOnRoad,
-                    //     ),
-                    //   ],
-                    // ),
                   ],
                 ),
               ),

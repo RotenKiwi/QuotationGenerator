@@ -1,3 +1,0 @@
-class Urbania10D{
-
-}

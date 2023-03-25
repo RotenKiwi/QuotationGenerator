@@ -254,8 +254,8 @@ class _pdfPageState extends State<pdfPage> {
                   height: 5,
                 ),
                 Row(
-                  children: [
-                    const Expanded(
+                  children: const [
+                    Expanded(
                       flex: 3,
                       child: Text(
                         'Insurance and Registration',
@@ -267,11 +267,11 @@ class _pdfPageState extends State<pdfPage> {
                         ),
                       ),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: SizedBox(),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: SizedBox(),
                     ),
@@ -316,8 +316,8 @@ class _pdfPageState extends State<pdfPage> {
                   height: 5,
                 ),
                 Row(
-                  children: [
-                    const Expanded(
+                  children: const [
+                    Expanded(
                       flex: 3,
                       child: Text(
                         'CRTEMP',
@@ -329,11 +329,11 @@ class _pdfPageState extends State<pdfPage> {
                         ),
                       ),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: SizedBox(),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: Text(
                         '3000',
@@ -351,8 +351,8 @@ class _pdfPageState extends State<pdfPage> {
                   height: 5,
                 ),
                 Row(
-                  children: [
-                    const Expanded(
+                  children: const [
+                    Expanded(
                       flex: 3,
                       child: Text(
                         'SpeedLock',
@@ -364,11 +364,11 @@ class _pdfPageState extends State<pdfPage> {
                         ),
                       ),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: SizedBox(),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: Text(
                         '1500',
@@ -386,42 +386,7 @@ class _pdfPageState extends State<pdfPage> {
                   height: 5,
                 ),
                 Row(
-                  children: [
-                    const Expanded(
-                      flex: 3,
-                      child: Text(
-                        'Comprehensive Insurance for one year',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    const Expanded(
-                      flex: 1,
-                      child: SizedBox(),
-                    ),
-                    const Expanded(
-                      flex: 1,
-                      child: Text(
-                        '65500',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: [
+                  children:  [
                     const Expanded(
                       flex: 3,
                       child: Text(
@@ -438,11 +403,11 @@ class _pdfPageState extends State<pdfPage> {
                       flex: 1,
                       child: SizedBox(),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: Text(
-                        '84,500',
-                        style: TextStyle(
+                        '${model.rtoTax}',
+                        style: const TextStyle(
                           fontSize: 10,
                           decoration: TextDecoration.none,
                           color: Colors.black,
@@ -456,8 +421,8 @@ class _pdfPageState extends State<pdfPage> {
                   height: 5,
                 ),
                 Row(
-                  children: [
-                    const Expanded(
+                  children: const [
+                    Expanded(
                       flex: 3,
                       child: Text(
                         'RTO Receipts',
@@ -469,11 +434,11 @@ class _pdfPageState extends State<pdfPage> {
                         ),
                       ),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: SizedBox(),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: Text(
                         '5100',
@@ -491,8 +456,8 @@ class _pdfPageState extends State<pdfPage> {
                   height: 5,
                 ),
                 Row(
-                  children: [
-                    const Expanded(
+                  children: const [
+                    Expanded(
                       flex: 3,
                       child: Text(
                         'Radium Strips',
@@ -504,11 +469,11 @@ class _pdfPageState extends State<pdfPage> {
                         ),
                       ),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: SizedBox(),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: Text(
                         '4500',
@@ -526,8 +491,8 @@ class _pdfPageState extends State<pdfPage> {
                   height: 5,
                 ),
                 Row(
-                  children: [
-                    const Expanded(
+                  children: const [
+                    Expanded(
                       flex: 3,
                       child: Text(
                         'GPRS Activation',
@@ -539,11 +504,11 @@ class _pdfPageState extends State<pdfPage> {
                         ),
                       ),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: SizedBox(),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: Text(
                         '12500',
@@ -561,8 +526,8 @@ class _pdfPageState extends State<pdfPage> {
                   height: 5,
                 ),
                 Row(
-                  children: [
-                    const Expanded(
+                  children: const [
+                    Expanded(
                       flex: 3,
                       child: Text(
                         'Fastag',
@@ -574,11 +539,11 @@ class _pdfPageState extends State<pdfPage> {
                         ),
                       ),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: SizedBox(),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: Text(
                         '650',
@@ -596,8 +561,8 @@ class _pdfPageState extends State<pdfPage> {
                   height: 5,
                 ),
                 Row(
-                  children: [
-                    const Expanded(
+                  children: const [
+                    Expanded(
                       flex: 3,
                       child: Text(
                         'Facilitating Charges',
@@ -609,11 +574,11 @@ class _pdfPageState extends State<pdfPage> {
                         ),
                       ),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: SizedBox(),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: Text(
                         '19500',
@@ -631,8 +596,8 @@ class _pdfPageState extends State<pdfPage> {
                   height: 5,
                 ),
                 Row(
-                  children: [
-                    const Expanded(
+                  children: const [
+                    Expanded(
                       flex: 3,
                       child: Text(
                         'HSRP(Applicable only if Registration done by Customer)',
@@ -644,11 +609,11 @@ class _pdfPageState extends State<pdfPage> {
                         ),
                       ),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: SizedBox(),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: Text(
                         '65500',
@@ -666,8 +631,8 @@ class _pdfPageState extends State<pdfPage> {
                   height: 5,
                 ),
                 Row(
-                  children: [
-                    const Expanded(
+                  children: const [
+                    Expanded(
                       flex: 3,
                       child: Text(
                         'Total charges',
@@ -679,11 +644,11 @@ class _pdfPageState extends State<pdfPage> {
                         ),
                       ),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: SizedBox(),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: Text(
                         '196250',
@@ -701,8 +666,8 @@ class _pdfPageState extends State<pdfPage> {
                   height: 10,
                 ),
                 Row(
-                  children: [
-                    const Expanded(
+                  children: const [
+                    Expanded(
                       flex: 3,
                       child: Text(
                         'Other(If Applicable)',
@@ -714,11 +679,11 @@ class _pdfPageState extends State<pdfPage> {
                         ),
                       ),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: SizedBox(),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: Text(
                         '0',
@@ -736,8 +701,8 @@ class _pdfPageState extends State<pdfPage> {
                   height: 10,
                 ),
                 Row(
-                  children: [
-                    const Expanded(
+                  children: const [
+                    Expanded(
                       flex: 3,
                       child: Text(
                         '',
@@ -749,11 +714,11 @@ class _pdfPageState extends State<pdfPage> {
                         ),
                       ),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: SizedBox(),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: Text(
                         '3095250',
@@ -783,12 +748,12 @@ class _pdfPageState extends State<pdfPage> {
 
             //Row for E.&.O.E Shit
             Row(
-              children: [
-                const Expanded(
+              children: const [
+                Expanded(
                   child: SizedBox(),
                   flex: 3,
                 ),
-                const Expanded(
+                Expanded(
                   flex: 2,
                   child: Text(
                     'E.&.O.E for S.P Automotive',

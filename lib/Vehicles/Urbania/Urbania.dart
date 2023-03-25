@@ -16,17 +16,10 @@ class Urbania{
     3125000,
   ];
 
-  List<String> rtoTax = [
-    '20000', //under PPRS Passing
-    '84500',
-    '110500'
+  List<int> rtoTax = [
+    20000, //under PPRS Passing
+    84500,
+    110500
   ];
 
-  //HSRP = 1500
-
-  int insurance(int price){
-    return price*0.0215.ceil();
   }
-
-
-}
