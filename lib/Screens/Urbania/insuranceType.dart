@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/TopBar.dart';
-import 'package:sp_quotation/Screens/Urbania/insuranceType.dart';
 import '../../Vehicles/Urbania/pdf/userDetails.dart' as user;
 import '../../Vehicles/Urbania/pdf/model_info.dart' as model;
 import '../../Components/RoundedButton.dart';
 import '../../Vehicles/Urbania/pdf/pdf_page.dart';
 
-class registrationType extends StatefulWidget {
-  const registrationType({Key? key}) : super(key: key);
+class insuranceType extends StatefulWidget {
+  const insuranceType({Key? key}) : super(key: key);
 
   @override
-  State<registrationType> createState() => _registrationTypeState();
+  State<insuranceType> createState() => _insuranceTypeState();
 }
 
-String? registration;
+String? insurancetype;
 
-class _registrationTypeState extends State<registrationType> {
+class _insuranceTypeState extends State<insuranceType> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints){
@@ -23,30 +22,30 @@ class _registrationTypeState extends State<registrationType> {
         body: Column(
           children: [
             SizedBox(height: constraints.maxHeight*0.07,),
-            topBar(text: 'Registration Type', maxWidth: constraints.maxWidth),
+            topBar(text: 'Insurance Type', maxWidth: constraints.maxWidth),
             Expanded(
               child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                 RadioListTile<String>(
-                    title: Text('Commercial Registration', style: TextStyle(fontSize: 25),),
+                    title: Text('Dealer', style: TextStyle(fontSize: 25),),
                     activeColor: Colors.black,
-                    value: 'Commercial',
-                    groupValue: registration,
+                    value: 'Dealer',
+                    groupValue: insurancetype,
                     onChanged: (value) {
                       setState(() {
-                        registration = value.toString();
-                        model.registrationType = value;
+                        insurancetype = value.toString();
+                        model.insuranceType = value;
                       });
                     }),
                 SizedBox(height: 50,),
                 RadioListTile<String>(
-                    title: Text('Private Registration', style: TextStyle(fontSize: 25),),
+                    title: Text('Self', style: TextStyle(fontSize: 25),),
                     activeColor: Colors.black,
-                    value: 'Private',
-                    groupValue: registration,
+                    value: 'Self',
+                    groupValue: insurancetype,
                     onChanged: (value) {
                       setState(() {
-                        registration = value.toString();
-                        model.registrationType = value;
+                        insurancetype = value.toString();
+                        model.insuranceType = value;
                       });
                     }),
 
@@ -56,7 +55,7 @@ class _registrationTypeState extends State<registrationType> {
               text: 'Next',
               press: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => insuranceType()));
+                    MaterialPageRoute(builder: (context) => pdfPage()));
               },
               color: Colors.black,
               textColor: Colors.white,

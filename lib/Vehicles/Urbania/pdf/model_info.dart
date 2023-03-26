@@ -5,6 +5,9 @@ int? rtoTax;
 int? totalCharges;
 int? otherCharges;
 int? finalAmt;
+String? color;
+String? registrationType;
+String? insuranceType;
 
 int crtemp = 3000;
 int speedLock = 1500;

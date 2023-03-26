@@ -15,6 +15,8 @@ class UrbaniaModelSelect extends StatefulWidget {
 
 String selectedValue = Urbania().model[0];
 int index = 0;
+String selectedColor = Urbania().colors[0];
+int colorIndex = 0;
 
 class _UrbaniaModelSelectState extends State<UrbaniaModelSelect> {
   @override
@@ -86,10 +88,51 @@ class _UrbaniaModelSelectState extends State<UrbaniaModelSelect> {
                         ),
                       ),
                     ),
-                    formField(
-                        text: 'Colour',
-                        horizontalPadding: constraint.maxWidth * 0.075,
-                        maxWidth: constraint.maxWidth),
+                    // formField(
+                    //     text: 'Colour',
+                    //     horizontalPadding: constraint.maxWidth * 0.075,
+                    //     maxWidth: constraint.maxWidth),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: constraint.maxWidth * 0.075,
+                          vertical: 15.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10.0, vertical: 5),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              menuMaxHeight: constraint.maxHeight * 0.3,
+                              value: selectedColor,
+                              items: Urbania().colors.map((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (value) {
+                                setState(
+                                      () {
+                                    selectedColor = '${value}';
+                                    colorIndex = Urbania()
+                                        .colors
+                                        .indexOf('${selectedColor}');
+                                    model.color = Urbania().colors[colorIndex];
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       height: constraint.maxHeight * 0.02,
                     ),
