@@ -8,16 +8,16 @@ import '../../Vehicles/Urbania/pdf/model_info.dart' as model;
 import '../../Components/RoundedButton.dart';
 import '../../Vehicles/Urbania/pdf/pdf_page.dart';
 
-class otherCharges extends StatefulWidget {
-  const otherCharges({Key? key}) : super(key: key);
+class otherCharge extends StatefulWidget {
+  const otherCharge({Key? key}) : super(key: key);
 
   @override
-  State<otherCharges> createState() => _otherChargesState();
+  State<otherCharge> createState() => _otherChargeState();
 }
 
 String? registrationexpense;
 
-class _otherChargesState extends State<otherCharges> {
+class _otherChargeState extends State<otherCharge> {
   @override
   Widget build(BuildContext context) {
 

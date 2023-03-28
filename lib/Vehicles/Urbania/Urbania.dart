@@ -1,6 +1,8 @@
-class Urbania{
+class Urbania {
   List<String> model = [
+    'Urbania (9 Seats + Driver)',
     'Urbania (10 Seats + Driver)',
+    'Urbania (12 Seats + Driver)',
     'Urbania (13 Seats + Driver)',
     'Urbania (17 Seats + Driver)',
   ];
@@ -11,15 +13,26 @@ class Urbania{
   ];
 
   List<int> price = [
-    2950000,
-    2899000,
-    3125000,
+    3065792,
+    3065792,
+    3391942,
+    3012997,
+    3248034,
   ];
 
-  List<int> rtoTax = [
-    20000, //under PPRS Passing
-    84500,
-    110500
+  List<int> rtoTaxTT = [
+    6500 * 9,
+    6500 * 10,
+    6500 * 12,
+    6500 * 13,
+    6500 * 17,
   ];
 
-  }
+  List<int> rtoTaxStaff = [
+    2000 * 9,
+    2000 * 10,
+    2000 * 12,
+    2000 * 13,
+    2000 * 17,
+  ];
+}

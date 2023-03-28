@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/TopBar.dart';
 import 'package:sp_quotation/Screens/Urbania/insuranceType.dart';
 import 'package:sp_quotation/Screens/Urbania/otherCharges.dart';
+import '../../Vehicles/Urbania/Urbania.dart';
 import '../../Vehicles/Urbania/pdf/model_info.dart';
 import '../../Vehicles/Urbania/pdf/userDetails.dart' as user;
 import '../../Vehicles/Urbania/pdf/model_info.dart' as model;
 import '../../Components/RoundedButton.dart';
 import '../../Vehicles/Urbania/pdf/pdf_page.dart';
-import 'commercialType.dart';
 
-class registrationType extends StatefulWidget {
-  const registrationType({Key? key}) : super(key: key);
+class commercialRegistrationType extends StatefulWidget {
+  const commercialRegistrationType({Key? key}) : super(key: key);
 
   @override
-  State<registrationType> createState() => _registrationTypeState();
+  State<commercialRegistrationType> createState() => _commercialRegistrationTypeState();
 }
 
 String? registration;
 String errorMessage = '';
 
-class _registrationTypeState extends State<registrationType> {
+class _commercialRegistrationTypeState extends State<commercialRegistrationType> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -29,23 +29,23 @@ class _registrationTypeState extends State<registrationType> {
             SizedBox(
               height: constraints.maxHeight * 0.07,
             ),
-            topBar(text: 'Registration Type', maxWidth: constraints.maxWidth),
+            topBar(text: 'Commercial \nRegistration Type', maxWidth: constraints.maxWidth),
             Expanded(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     RadioListTile<String>(
                         title: Text(
-                          'Commercial Registration',
+                          'Tours and Travels',
                           style: TextStyle(fontSize: 25),
                         ),
                         activeColor: Colors.black,
-                        value: 'Commercial',
+                        value: 'T&T',
                         groupValue: registration,
                         onChanged: (value) {
                           setState(() {
                             registration = value.toString();
-                            model.registrationType = value;
+                            model.commercialregistrationType = value;
                           });
                         }),
                     SizedBox(
@@ -53,16 +53,16 @@ class _registrationTypeState extends State<registrationType> {
                     ),
                     RadioListTile<String>(
                         title: Text(
-                          'Private Registration',
+                          'Staff Passing',
                           style: TextStyle(fontSize: 25),
                         ),
                         activeColor: Colors.black,
-                        value: 'Private',
+                        value: 'Staff',
                         groupValue: registration,
                         onChanged: (value) {
                           setState(() {
                             registration = value.toString();
-                            model.registrationType = value;
+                            model.commercialregistrationType = value;
                           });
                         }),
                   ]),
@@ -79,13 +79,16 @@ class _registrationTypeState extends State<registrationType> {
               press: () {
                 if (model.registrationType == null) {
                   setState(() {
-                    model.registrationType = 'Select valid option';
+                    errorMessage = 'Select valid option';
                   });
-                } if(model.registrationType == 'Commercial') {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => commercialRegistrationType()));
                 }
-               else{
+                else{
+                  int index = Urbania().model.indexOf(model.model!);
+                  if(model.commercialregistrationType == 'T&T'){model.rtoTax = Urbania().rtoTaxTT[index] as int?;}
+                  else{model.rtoTax = Urbania().rtoTaxStaff[index] as int?;}
+
+                  print(model.model);
+                  print(model.rtoTax);
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => otherCharge()));
                 }

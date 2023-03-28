@@ -25,7 +25,6 @@ class _UrbaniaModelSelectState extends State<UrbaniaModelSelect> {
     model.model = Urbania().model[index];
     model.price = Urbania().price[index];
     model.insurance = (model.price! * 0.0215).ceil();
-    model.rtoTax = Urbania().rtoTax[index];
     return LayoutBuilder(
       builder: (context, constraint) {
         return Scaffold(
@@ -80,7 +79,6 @@ class _UrbaniaModelSelectState extends State<UrbaniaModelSelect> {
                                     model.model = Urbania().model[index];
                                     model.price = Urbania().price[index];
                                     model.insurance = (model.price! * 0.0215).ceil();
-                                    model.rtoTax = Urbania().rtoTax[index] as int?;
                                   },
                                 );
                               },
