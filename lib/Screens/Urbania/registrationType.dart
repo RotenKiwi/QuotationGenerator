@@ -56,7 +56,7 @@ class _registrationTypeState extends State<registrationType> {
               text: 'Next',
               press: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => insuranceType()));
+                    MaterialPageRoute(builder: (context) => pdfPage()));
               },
               color: Colors.black,
               textColor: Colors.white,
