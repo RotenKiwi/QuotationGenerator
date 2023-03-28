@@ -9,6 +9,7 @@ class pdfPage extends StatefulWidget {
   @override
   State<pdfPage> createState() => _pdfPageState();
 }
+DateTime now = DateTime.now();
 
 class _pdfPageState extends State<pdfPage> {
   @override
@@ -96,8 +97,8 @@ class _pdfPageState extends State<pdfPage> {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
+                  children:  [
+                    const Text(
                       'Quotation : SP/Urbania/Mar/09}',
                       style: TextStyle(
                           fontWeight: FontWeight.w400,
@@ -105,12 +106,12 @@ class _pdfPageState extends State<pdfPage> {
                           decoration: TextDecoration.none,
                           color: Colors.black),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 40,
                     ),
                     Text(
-                      'Date: 10/10/10',
-                      style: TextStyle(
+                      'Date: ${now.day}/${now.month}/${now.year}',
+                      style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 10,
                           decoration: TextDecoration.none,
@@ -263,7 +264,7 @@ class _pdfPageState extends State<pdfPage> {
                           fontSize: 10,
                           decoration: TextDecoration.none,
                           color: Colors.black,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
@@ -277,47 +278,49 @@ class _pdfPageState extends State<pdfPage> {
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 5,
+                ),
+                (model.insuranceType == 'Dealer')
+                    ? Row(
+                        children: [
+                          const Expanded(
+                            flex: 3,
+                            child: Text(
+                              'Comprehensive Insurance for one year',
+                              style: TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const Expanded(
+                            flex: 1,
+                            child: SizedBox(),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              '${model.insurance}',
+                              style: const TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Container(),
                 const SizedBox(
                   height: 5,
                 ),
                 Row(
                   children: [
                     const Expanded(
-                      flex: 3,
-                      child: Text(
-                        'Comprehensive Insurance for one year',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    const Expanded(
-                      flex: 1,
-                      child: SizedBox(),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        '${model.insurance}',
-                        style: const TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: const [
-                    Expanded(
                       flex: 3,
                       child: Text(
                         'CRTEMP',
@@ -329,76 +332,6 @@ class _pdfPageState extends State<pdfPage> {
                         ),
                       ),
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: SizedBox(),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        '3000',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: const [
-                    Expanded(
-                      flex: 3,
-                      child: Text(
-                        'SpeedLock',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: SizedBox(),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        '1500',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children:  [
-                    const Expanded(
-                      flex: 3,
-                      child: Text(
-                        'RTO Tax (MH passing under Transport category Yellow Number plate)',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
                     const Expanded(
                       flex: 1,
                       child: SizedBox(),
@@ -406,7 +339,7 @@ class _pdfPageState extends State<pdfPage> {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        '${model.rtoTax}',
+                        '${model.crtemp}',
                         style: const TextStyle(
                           fontSize: 10,
                           decoration: TextDecoration.none,
@@ -420,219 +353,305 @@ class _pdfPageState extends State<pdfPage> {
                 const SizedBox(
                   height: 5,
                 ),
-                Row(
-                  children: const [
-                    Expanded(
-                      flex: 3,
-                      child: Text(
-                        'RTO Receipts',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: SizedBox(),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        '5100',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
+                (model.registrationType == 'Commercial')
+                    ? Row(
+                        children: [
+                          const Expanded(
+                            flex: 3,
+                            child: Text(
+                              'SpeedLock',
+                              style: TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const Expanded(
+                            flex: 1,
+                            child: SizedBox(),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              '${model.speedLock}',
+                              style: const TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Container(),
+                const SizedBox(
+                  height: 5,
                 ),
+                (model.registrationExpense == 'Dealer')
+                    ? Row(
+                        children: [
+                          const Expanded(
+                            flex: 3,
+                            child: Text(
+                              'RTO Tax (MH passing under Transport category Yellow Number plate)',
+                              style: TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const Expanded(
+                            flex: 1,
+                            child: SizedBox(),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              '${model.rtoTax}',
+                              style: const TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Container(),
+                const SizedBox(
+                  height: 5,
+                ),
+                (model.registrationExpense == 'Dealer')
+                    ? Row(
+                        children: [
+                          const Expanded(
+                            flex: 3,
+                            child: Text(
+                              'RTO Receipts',
+                              style: TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const Expanded(
+                            flex: 1,
+                            child: SizedBox(),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              '${model.rtoReceipts}',
+                              style: const TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Container(),
+                const SizedBox(
+                  height: 5,
+                ),
+                (model.registrationType == 'Commercial')
+                    ? Row(
+                        children: [
+                          const Expanded(
+                            flex: 3,
+                            child: Text(
+                              'Radium Strips',
+                              style: TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const Expanded(
+                            flex: 1,
+                            child: SizedBox(),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              '${model.radiumStrips}',
+                              style: const TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Container(),
+                const SizedBox(
+                  height: 5,
+                ),
+                (model.registrationType == 'Commercial')
+                    ? Row(
+                        children: [
+                          const Expanded(
+                            flex: 3,
+                            child: Text(
+                              'GPRS Activation',
+                              style: TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const Expanded(
+                            flex: 1,
+                            child: SizedBox(),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              '${model.gprsActivation}',
+                              style: const TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Container(),
+                const SizedBox(
+                  height: 5,
+                ),
+                (model.registrationType == 'Commercial')
+                    ? Row(
+                        children: [
+                          const Expanded(
+                            flex: 3,
+                            child: Text(
+                              'Fastag',
+                              style: TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const Expanded(
+                            flex: 1,
+                            child: SizedBox(),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              '${model.fastTag}',
+                              style: const TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Container(),
+                const SizedBox(
+                  height: 5,
+                ),
+                (model.registrationType == 'Commercial')
+                    ? Row(
+                        children: [
+                          const Expanded(
+                            flex: 3,
+                            child: Text(
+                              'Facilitating Charges',
+                              style: TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const Expanded(
+                            flex: 1,
+                            child: SizedBox(),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              '${model.facilitatingCharges}',
+                              style: const TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Container(),
+                const SizedBox(
+                  height: 5,
+                ),
+                (model.registrationType == 'Private')
+                    ? Row(
+                        children: [
+                          const Expanded(
+                            flex: 3,
+                            child: Text(
+                              'HSRP(Applicable only if Registration done by Customer)',
+                              style: TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const Expanded(
+                            flex: 1,
+                            child: SizedBox(),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              '${model.hsrp}',
+                              style: const TextStyle(
+                                fontSize: 10,
+                                decoration: TextDecoration.none,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Container(),
                 const SizedBox(
                   height: 5,
                 ),
                 Row(
-                  children: const [
-                    Expanded(
-                      flex: 3,
-                      child: Text(
-                        'Radium Strips',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: SizedBox(),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        '4500',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: const [
-                    Expanded(
-                      flex: 3,
-                      child: Text(
-                        'GPRS Activation',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: SizedBox(),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        '12500',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: const [
-                    Expanded(
-                      flex: 3,
-                      child: Text(
-                        'Fastag',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: SizedBox(),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        '650',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: const [
-                    Expanded(
-                      flex: 3,
-                      child: Text(
-                        'Facilitating Charges',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: SizedBox(),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        '19500',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: const [
-                    Expanded(
-                      flex: 3,
-                      child: Text(
-                        'HSRP(Applicable only if Registration done by Customer)',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: SizedBox(),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        '65500',
-                        style: TextStyle(
-                          fontSize: 10,
-                          decoration: TextDecoration.none,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  children: const [
-                    Expanded(
+                  children: [
+                    const Expanded(
                       flex: 3,
                       child: Text(
                         'Total charges',
@@ -644,15 +663,15 @@ class _pdfPageState extends State<pdfPage> {
                         ),
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                       flex: 1,
                       child: SizedBox(),
                     ),
                     Expanded(
                       flex: 1,
                       child: Text(
-                        '196250',
-                        style: TextStyle(
+                        '${model.totalCharges}',
+                        style: const TextStyle(
                           fontSize: 12,
                           decoration: TextDecoration.none,
                           color: Colors.black,
@@ -666,12 +685,12 @@ class _pdfPageState extends State<pdfPage> {
                   height: 10,
                 ),
                 Row(
-                  children: const [
+                  children: [
                     Expanded(
                       flex: 3,
                       child: Text(
-                        'Other(If Applicable)',
-                        style: TextStyle(
+                        (model.other!=null)?(model.other!):'none',
+                        style: const TextStyle(
                           fontSize: 10,
                           decoration: TextDecoration.none,
                           color: Colors.black,
@@ -679,15 +698,15 @@ class _pdfPageState extends State<pdfPage> {
                         ),
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                       flex: 1,
                       child: SizedBox(),
                     ),
                     Expanded(
                       flex: 1,
                       child: Text(
-                        '0',
-                        style: TextStyle(
+                        (model.otherCharges!=null)?'${model.otherCharges}':'0',
+                        style: const TextStyle(
                           fontSize: 10,
                           decoration: TextDecoration.none,
                           color: Colors.black,
@@ -701,8 +720,8 @@ class _pdfPageState extends State<pdfPage> {
                   height: 10,
                 ),
                 Row(
-                  children: const [
-                    Expanded(
+                  children: [
+                    const Expanded(
                       flex: 3,
                       child: Text(
                         '',
@@ -714,15 +733,15 @@ class _pdfPageState extends State<pdfPage> {
                         ),
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                       flex: 1,
                       child: SizedBox(),
                     ),
                     Expanded(
                       flex: 1,
                       child: Text(
-                        '3095250',
-                        style: TextStyle(
+                        '${model.finalAmt}',
+                        style: const TextStyle(
                           fontSize: 15,
                           decoration: TextDecoration.none,
                           color: Colors.black,
@@ -750,8 +769,8 @@ class _pdfPageState extends State<pdfPage> {
             Row(
               children: const [
                 Expanded(
-                  child: SizedBox(),
                   flex: 3,
+                  child: SizedBox(),
                 ),
                 Expanded(
                   flex: 2,

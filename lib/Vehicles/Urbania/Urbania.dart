@@ -7,7 +7,7 @@ class Urbania{
 
   List<String> colors = [
     'White',
-    'Blue',
+    'Grey',
   ];
 
   List<int> price = [

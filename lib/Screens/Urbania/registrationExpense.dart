@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/TopBar.dart';
-import 'package:sp_quotation/Screens/Urbania/registrationExpense.dart';
 import '../../Vehicles/Urbania/pdf/userDetails.dart' as user;
 import '../../Vehicles/Urbania/pdf/model_info.dart' as model;
 import '../../Components/RoundedButton.dart';
 import '../../Vehicles/Urbania/pdf/pdf_page.dart';
+import 'otherCharges.dart';
 
-class insuranceType extends StatefulWidget {
-  const insuranceType({Key? key}) : super(key: key);
+class registrationExpense extends StatefulWidget {
+  const registrationExpense({Key? key}) : super(key: key);
 
   @override
-  State<insuranceType> createState() => _insuranceTypeState();
+  State<registrationExpense> createState() => _registrationExpenseState();
 }
 
-String? insurancetype;
+String? registrationexpense;
 
-class _insuranceTypeState extends State<insuranceType> {
+class _registrationExpenseState extends State<registrationExpense> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints){
@@ -23,18 +23,18 @@ class _insuranceTypeState extends State<insuranceType> {
         body: Column(
           children: [
             SizedBox(height: constraints.maxHeight*0.07,),
-            topBar(text: 'Insurance Type', maxWidth: constraints.maxWidth),
+            topBar(text: 'Registration Expense', maxWidth: constraints.maxWidth),
             Expanded(
               child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                 RadioListTile<String>(
                     title: Text('Dealer', style: TextStyle(fontSize: 25),),
                     activeColor: Colors.black,
                     value: 'Dealer',
-                    groupValue: insurancetype,
+                    groupValue: registrationexpense,
                     onChanged: (value) {
                       setState(() {
-                        insurancetype = value.toString();
-                        model.insuranceType = value;
+                        registrationexpense = value.toString();
+                        model.registrationExpense = value;
                       });
                     }),
                 SizedBox(height: 50,),
@@ -42,11 +42,11 @@ class _insuranceTypeState extends State<insuranceType> {
                     title: Text('Self', style: TextStyle(fontSize: 25),),
                     activeColor: Colors.black,
                     value: 'Self',
-                    groupValue: insurancetype,
+                    groupValue: registrationexpense,
                     onChanged: (value) {
                       setState(() {
-                        insurancetype = value.toString();
-                        model.insuranceType = value;
+                        registrationexpense = value.toString();
+                        model.registrationExpense = value;
                       });
                     }),
 
@@ -56,7 +56,7 @@ class _insuranceTypeState extends State<insuranceType> {
               text: 'Next',
               press: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => registrationExpense()));
+                    MaterialPageRoute(builder: (context) => otherCharges()));
               },
               color: Colors.black,
               textColor: Colors.white,

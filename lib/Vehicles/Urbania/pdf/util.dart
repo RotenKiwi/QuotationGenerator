@@ -98,7 +98,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
               children: [
                 pw.Expanded(
                   child: pw.Text(
-                    'Quotation : SP/Urbania/Mar/09}',
+                    'Quotation : SP/Urbania/${now.day}/${now.month}/${now.hour}',
                     style: pw.TextStyle(
                       fontWeight: pw.FontWeight.normal,
                       fontSize: 10,
@@ -111,7 +111,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                   width: 40,
                 ),
                 pw.Text(
-                  'Date: ${DateTime(now.day, now.month, now.year)}',
+                  'Date: ${now.day}/${now.month}/${now.year}',
                   style: pw.TextStyle(
                     fontWeight: pw.FontWeight.normal,
                     fontSize: 10,
@@ -282,7 +282,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
             pw.SizedBox(
               height: 5,
             ),
-            pw.Row(
+            (model.insuranceType == 'Dealer')?pw.Row(
               children: [
                 pw.Expanded(
                   flex: 3,
@@ -313,7 +313,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                   ),
                 ),
               ],
-            ),
+            ):pw.Container(),
             pw.SizedBox(
               height: 5,
             ),
@@ -338,7 +338,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                 pw.Expanded(
                   flex: 1,
                   child: pw.Text(
-                    '3000',
+                    '${model.crtemp}',
                     style: pw.TextStyle(
                       fontSize: 10,
                       decoration: pw.TextDecoration.none,
@@ -352,7 +352,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
             pw.SizedBox(
               height: 5,
             ),
-            pw.Row(
+            (model.registrationType == 'Commercial')?pw.Row(
               children: [
                 pw.Expanded(
                   flex: 3,
@@ -373,7 +373,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                  pw.Expanded(
                   flex: 1,
                   child: pw.Text(
-                    '1500',
+                    '${model.speedLock}',
                     style: pw.TextStyle(
                       fontSize: 10,
                       decoration: pw.TextDecoration.none,
@@ -383,46 +383,11 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                   ),
                 ),
               ],
-            ),
+            ):pw.Container(),
              pw.SizedBox(
               height: 5,
             ),
-            pw.Row(
-              children: [
-                 pw.Expanded(
-                  flex: 3,
-                  child: pw.Text(
-                    'Comprehensive Insurance for one year',
-                    style: pw.TextStyle(
-                      fontSize: 10,
-                      decoration: pw.TextDecoration.none,
-                      color: black,
-                      fontWeight: pw.FontWeight.normal,
-                    ),
-                  ),
-                ),
-                 pw.Expanded(
-                  flex: 1,
-                  child: pw.SizedBox(),
-                ),
-                 pw.Expanded(
-                  flex: 1,
-                  child: pw.Text(
-                    '65500',
-                    style: pw.TextStyle(
-                      fontSize: 10,
-                      decoration: pw.TextDecoration.none,
-                      color: black,
-                      fontWeight: pw.FontWeight.normal,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-             pw.SizedBox(
-              height: 5,
-            ),
-            pw.Row(
+            (model.registrationExpense == 'Dealer')? pw.Row(
               children: [
                  pw.Expanded(
                   flex: 3,
@@ -443,7 +408,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                  pw.Expanded(
                   flex: 1,
                   child: pw.Text(
-                    '84,500',
+                    '${model.rtoTax}',
                     style: pw.TextStyle(
                       fontSize: 10,
                       decoration: pw.TextDecoration.none,
@@ -453,11 +418,11 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                   ),
                 ),
               ],
-            ),
+            ):pw.Container(),
              pw.SizedBox(
               height: 5,
             ),
-            pw.Row(
+            (model.registrationExpense == 'Dealer')?pw.Row(
               children: [
                  pw.Expanded(
                   flex: 3,
@@ -478,7 +443,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                  pw.Expanded(
                   flex: 1,
                   child: pw.Text(
-                    '5100',
+                    '${model.rtoReceipts}',
                     style: pw.TextStyle(
                       fontSize: 10,
                       decoration: pw.TextDecoration.none,
@@ -488,11 +453,11 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                   ),
                 ),
               ],
-            ),
+            ):pw.Container(),
              pw.SizedBox(
               height: 5,
             ),
-            pw.Row(
+            (model.registrationType == 'Commercial')?pw.Row(
               children: [
                  pw.Expanded(
                   flex: 3,
@@ -513,7 +478,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                  pw.Expanded(
                   flex: 1,
                   child: pw.Text(
-                    '4500',
+                    '${model.radiumStrips}',
                     style: pw.TextStyle(
                       fontSize: 10,
                       decoration: pw.TextDecoration.none,
@@ -523,11 +488,11 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                   ),
                 ),
               ],
-            ),
+            ):pw.Container(),
              pw.SizedBox(
               height: 5,
             ),
-            pw.Row(
+            (model.registrationType == 'Commercial')?pw.Row(
               children: [
                  pw.Expanded(
                   flex: 3,
@@ -548,7 +513,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                  pw.Expanded(
                   flex: 1,
                   child: pw.Text(
-                    '12500',
+                    '${model.gprsActivation}',
                     style: pw.TextStyle(
                       fontSize: 10,
                       decoration: pw.TextDecoration.none,
@@ -558,10 +523,11 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                   ),
                 ),
               ],
-            ),
+            ):pw.Container(),
              pw.SizedBox(
               height: 5,
             ),
+            (model.registrationType == 'Commercial')?
             pw.Row(
               children: [
                  pw.Expanded(
@@ -583,7 +549,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                  pw.Expanded(
                   flex: 1,
                   child: pw.Text(
-                    '650',
+                    '${model.fastTag}',
                     style: pw.TextStyle(
                       fontSize: 10,
                       decoration: pw.TextDecoration.none,
@@ -593,11 +559,11 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                   ),
                 ),
               ],
-            ),
+            ):pw.Container(),
              pw.SizedBox(
               height: 5,
             ),
-            pw.Row(
+            (model.registrationType == 'Commercial')? pw.Row(
               children: [
                  pw.Expanded(
                   flex: 3,
@@ -618,7 +584,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                  pw.Expanded(
                   flex: 1,
                   child: pw.Text(
-                    '19500',
+                    '${model.facilitatingCharges}',
                     style: pw.TextStyle(
                       fontSize: 10,
                       decoration: pw.TextDecoration.none,
@@ -628,10 +594,11 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                   ),
                 ),
               ],
-            ),
+            ):pw.Container(),
              pw.SizedBox(
               height: 5,
             ),
+            (model.registrationType == 'Private')?
             pw.Row(
               children: [
                  pw.Expanded(
@@ -653,7 +620,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                  pw.Expanded(
                   flex: 1,
                   child: pw.Text(
-                    '65500',
+                    '${model.hsrp}',
                     style: pw.TextStyle(
                       fontSize: 10,
                       decoration: pw.TextDecoration.none,
@@ -663,7 +630,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                   ),
                 ),
               ],
-            ),
+            ):pw.Container(),
              pw.SizedBox(
               height: 5,
             ),
@@ -688,7 +655,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                  pw.Expanded(
                   flex: 1,
                   child: pw.Text(
-                    '196250',
+                    '${model.totalCharges}',
                     style: pw.TextStyle(
                       fontSize: 12,
                       decoration: pw.TextDecoration.none,
@@ -707,7 +674,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                  pw.Expanded(
                   flex: 3,
                   child: pw.Text(
-                    'Other(If Applicable)',
+                    'Other(If Applicable): ${model.other}',
                     style: pw.TextStyle(
                       fontSize: 10,
                       decoration: pw.TextDecoration.none,
@@ -723,7 +690,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                  pw.Expanded(
                   flex: 1,
                   child: pw.Text(
-                    '0',
+                    '${model.otherCharges}',
                     style: pw.TextStyle(
                       fontSize: 10,
                       decoration: pw.TextDecoration.none,
@@ -758,7 +725,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                  pw.Expanded(
                   flex: 1,
                   child: pw.Text(
-                    '3095250',
+                    '${model.finalAmt}',
                     style: pw.TextStyle(
                       fontSize: 15,
                       decoration: pw.TextDecoration.none,

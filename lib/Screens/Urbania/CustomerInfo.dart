@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/FormField.dart';
 import 'package:sp_quotation/Components/RoundedButton.dart';
 import 'package:sp_quotation/Components/TopBar.dart';
-import 'package:sp_quotation/Screens/Gurkha/ModelDetails.dart';
 import 'package:sp_quotation/Screens/Urbania/modelSelect.dart';
 import '../../Vehicles/Urbania/pdf/userDetails.dart' as user;
 
-class Urbania_Client_Info extends StatelessWidget {
+class Urbania_Client_Info extends StatefulWidget {
   const Urbania_Client_Info({Key? key}) : super(key: key);
 
+  @override
+  State<Urbania_Client_Info> createState() => _Urbania_Client_InfoState();
+}
+
+String errorMessage = '';
+
+class _Urbania_Client_InfoState extends State<Urbania_Client_Info> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,11 +68,29 @@ class Urbania_Client_Info extends StatelessWidget {
               SizedBox(
                 height: constraint.maxWidth * 0.05,
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                child: Text(errorMessage, style: TextStyle(color: Colors.red),),
+              ),
               RoundedButton(
                 text: 'Next',
                 press: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => UrbaniaModelSelect()));
+                  if(user.name != null && user.location!=null && user.contactNo!=null && user.bankHP!=null ){
+                    if(user.contactNo!.length == 10){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => UrbaniaModelSelect()));
+                    }
+                    else{
+                      setState(() {
+                        errorMessage = "Enter valid Contact Number";
+                      });
+                    }
+                  }
+                  else{
+                    setState(() {
+                      errorMessage = "Enter valid Name, Location, Contact Number and Bank HP";
+                    });
+                  }
                 },
                 color: Colors.black,
                 textColor: Colors.white,
