@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/TopBar.dart';
+import 'package:sp_quotation/Screens/Urbania/insuranceType.dart';
 import '../../Vehicles/Urbania/pdf/userDetails.dart' as user;
 import '../../Vehicles/Urbania/pdf/model_info.dart' as model;
 import '../../Components/RoundedButton.dart';
@@ -14,6 +15,7 @@ class registrationExpense extends StatefulWidget {
 }
 
 String? registrationexpense;
+String errorMessage = '';
 
 class _registrationExpenseState extends State<registrationExpense> {
   @override
@@ -39,7 +41,7 @@ class _registrationExpenseState extends State<registrationExpense> {
                     }),
                 SizedBox(height: 50,),
                 RadioListTile<String>(
-                    title: Text('Self', style: TextStyle(fontSize: 25),),
+                    title: Text('Customer', style: TextStyle(fontSize: 25),),
                     activeColor: Colors.black,
                     value: 'Self',
                     groupValue: registrationexpense,
@@ -52,11 +54,20 @@ class _registrationExpenseState extends State<registrationExpense> {
 
               ]),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20.0),
+              child: Text(errorMessage, style: TextStyle(color: Colors.red),),
+            ),
             RoundedButton(
               text: 'Next',
               press: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => otherCharges()));
+                if(model.registrationExpense==null){
+                  setState(() {
+                    errorMessage = 'Select valid option';
+                  });
+                }else{Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => insuranceType()));}
+
               },
               color: Colors.black,
               textColor: Colors.white,

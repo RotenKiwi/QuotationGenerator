@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sp_quotation/Screens/Urbania/registrationExpense.dart';
 import 'package:sp_quotation/Screens/Urbania/registrationType.dart';
 import 'package:sp_quotation/Vehicles/Urbania/Urbania.dart';
 import '../../Vehicles/Urbania/pdf/model_info.dart' as model;
@@ -145,7 +146,7 @@ class _UrbaniaModelSelectState extends State<UrbaniaModelSelect> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => registrationType()));
+                          builder: (context) => registrationExpense()));
                 },
                 color: Colors.black,
                 textColor: Colors.white,
