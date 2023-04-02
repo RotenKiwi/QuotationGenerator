@@ -13,13 +13,15 @@ class commercialRegistrationType extends StatefulWidget {
   const commercialRegistrationType({Key? key}) : super(key: key);
 
   @override
-  State<commercialRegistrationType> createState() => _commercialRegistrationTypeState();
+  State<commercialRegistrationType> createState() =>
+      _commercialRegistrationTypeState();
 }
 
 String? registration;
 String errorMessage = '';
 
-class _commercialRegistrationTypeState extends State<commercialRegistrationType> {
+class _commercialRegistrationTypeState
+    extends State<commercialRegistrationType> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -29,7 +31,9 @@ class _commercialRegistrationTypeState extends State<commercialRegistrationType>
             SizedBox(
               height: constraints.maxHeight * 0.07,
             ),
-            topBar(text: 'Commercial \nRegistration Type', maxWidth: constraints.maxWidth),
+            topBar(
+                text: 'Commercial \nRegistration Type',
+                maxWidth: constraints.maxWidth),
             Expanded(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -43,10 +47,21 @@ class _commercialRegistrationTypeState extends State<commercialRegistrationType>
                         value: 'T&T',
                         groupValue: registration,
                         onChanged: (value) {
-                          setState(() {
-                            registration = value.toString();
-                            model.commercialregistrationType = value;
-                          });
+                          if (model.model == Urbania().model[0] ||
+                              model.model == Urbania().model[1] ||
+                              model.model == Urbania().model[2]){
+                            null;
+                            setState(() {
+                              errorMessage = 'T&T not available for ${model.model}.';
+                            });
+                          }
+                          else{
+                            setState(() {
+                              registration = value.toString();
+                              model.commercialregistrationType = value;
+
+                            });
+                          }
                         }),
                     SizedBox(
                       height: 50,
@@ -63,6 +78,7 @@ class _commercialRegistrationTypeState extends State<commercialRegistrationType>
                           setState(() {
                             registration = value.toString();
                             model.commercialregistrationType = value;
+                            model.insurance = (model.price!*0.024).ceil();
                           });
                         }),
                   ]),
@@ -77,15 +93,19 @@ class _commercialRegistrationTypeState extends State<commercialRegistrationType>
             RoundedButton(
               text: 'Next',
               press: () {
-                if (model.registrationType == null) {
+                if (model.commercialregistrationType == null) {
                   setState(() {
                     errorMessage = 'Select valid option';
                   });
-                }
-                else{
+                } else {
                   int index = Urbania().model.indexOf(model.model!);
-                  if(model.commercialregistrationType == 'T&T'){model.rtoTax = Urbania().rtoTaxTT[index] as int?;}
-                  else{model.rtoTax = Urbania().rtoTaxStaff[index] as int?;}
+                  if (model.commercialregistrationType == 'T&T') {
+                    model.insurance = (model.price! * 0.024).ceil();
+                    model.rtoTax = Urbania().rtoTaxTT[index] as int?;
+                  } else {
+                    model.insurance = (model.price! * 0.02).ceil();
+                    model.rtoTax = Urbania().rtoTaxStaff[index] as int?;
+                  }
 
                   print(model.model);
                   print(model.rtoTax);

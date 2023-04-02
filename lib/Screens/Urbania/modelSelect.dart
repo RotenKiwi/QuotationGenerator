@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sp_quotation/Screens/Urbania/insuranceType.dart';
 import 'package:sp_quotation/Screens/Urbania/registrationExpense.dart';
 import 'package:sp_quotation/Screens/Urbania/registrationType.dart';
 import 'package:sp_quotation/Vehicles/Urbania/Urbania.dart';
@@ -24,7 +25,7 @@ class _UrbaniaModelSelectState extends State<UrbaniaModelSelect> {
   Widget build(BuildContext context) {
     model.model = Urbania().model[index];
     model.price = Urbania().price[index];
-    model.insurance = (model.price! * 0.0215).ceil();
+    //model.insurance = (model.price! * 0.0215).ceil();
     return LayoutBuilder(
       builder: (context, constraint) {
         return Scaffold(
@@ -78,7 +79,7 @@ class _UrbaniaModelSelectState extends State<UrbaniaModelSelect> {
                                         .indexOf('${selectedValue}');
                                     model.model = Urbania().model[index];
                                     model.price = Urbania().price[index];
-                                    model.insurance = (model.price! * 0.0215).ceil();
+                                    //model.insurance = (model.price! * 0.0215).ceil();
                                   },
                                 );
                               },
@@ -144,7 +145,7 @@ class _UrbaniaModelSelectState extends State<UrbaniaModelSelect> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => registrationExpense()));
+                          builder: (context) => insuranceType()));
                 },
                 color: Colors.black,
                 textColor: Colors.white,

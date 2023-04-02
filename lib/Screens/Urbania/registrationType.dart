@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/TopBar.dart';
 import 'package:sp_quotation/Screens/Urbania/insuranceType.dart';
 import 'package:sp_quotation/Screens/Urbania/otherCharges.dart';
+import 'package:sp_quotation/Vehicles/Urbania/Urbania.dart';
 import '../../Vehicles/Urbania/pdf/model_info.dart';
 import '../../Vehicles/Urbania/pdf/userDetails.dart' as user;
 import '../../Vehicles/Urbania/pdf/model_info.dart' as model;
@@ -60,10 +61,19 @@ class _registrationTypeState extends State<registrationType> {
                         value: 'Private',
                         groupValue: registration,
                         onChanged: (value) {
-                          setState(() {
-                            registration = value.toString();
-                            model.registrationType = value;
-                          });
+                          if(model.model == Urbania().model[0]){
+                            setState(() {
+                              registration = value.toString();
+                              model.registrationType = value;
+                              model.insurance = (model.price!*0.032).ceil();
+                            });
+                          }
+                          else{
+                            null;
+                            setState(() {
+                              errorMessage = 'Private passing only available for ${Urbania().model[0]}';
+                            });
+                          }
                         }),
                   ]),
             ),
@@ -86,6 +96,7 @@ class _registrationTypeState extends State<registrationType> {
                       MaterialPageRoute(builder: (context) => commercialRegistrationType()));
                 }
                else{
+                 model.rtoTax = (model.price!*0.146).ceil();
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => otherCharge()));
                 }

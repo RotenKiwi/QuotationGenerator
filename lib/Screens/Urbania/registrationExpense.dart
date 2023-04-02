@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/TopBar.dart';
 import 'package:sp_quotation/Screens/Urbania/insuranceType.dart';
+import 'package:sp_quotation/Vehicles/Urbania/Urbania.dart';
+import 'package:sp_quotation/Vehicles/Urbania/pdf/pdfpage.dart';
 import '../../Vehicles/Urbania/pdf/userDetails.dart' as user;
 import '../../Vehicles/Urbania/pdf/model_info.dart' as model;
 import '../../Components/RoundedButton.dart';
@@ -8,7 +10,8 @@ import '../../Vehicles/Urbania/pdf/pdf_page.dart';
 import 'otherCharges.dart';
 
 class registrationExpense extends StatefulWidget {
-  const registrationExpense({Key? key}) : super(key: key);
+  final String insurancetype; //possible value => Priv, T&T, PPRS, Customer
+  const registrationExpense({Key? key, required this.insurancetype}) : super(key: key);
 
   @override
   State<registrationExpense> createState() => _registrationExpenseState();
@@ -20,6 +23,7 @@ String errorMessage = '';
 class _registrationExpenseState extends State<registrationExpense> {
   @override
   Widget build(BuildContext context) {
+    int index = Urbania().model.indexOf(model.model!);
     return LayoutBuilder(builder: (context, constraints){
       return Scaffold(
         body: Column(
@@ -37,6 +41,11 @@ class _registrationExpenseState extends State<registrationExpense> {
                       setState(() {
                         registrationexpense = value.toString();
                         model.registrationExpense = value;
+                        model.registrationType = 'Commercial';
+                        if(widget.insurancetype == "Priv"){model.rtoTax = (model.price!*0.146).ceil();}
+                        else if (widget.insurancetype == "T&T"){model.rtoTax = Urbania().rtoTaxTT[index];}
+                        else if (widget.insurancetype == "PPRS"){model.rtoTax = Urbania().rtoTaxStaff[index];}
+                        else{model.rtoTax = 0;}
                       });
                     }),
                 SizedBox(height: 50,),
@@ -49,6 +58,7 @@ class _registrationExpenseState extends State<registrationExpense> {
                       setState(() {
                         registrationexpense = value.toString();
                         model.registrationExpense = value;
+                        model.registrationType = 'Private';
                       });
                     }),
 
@@ -66,7 +76,7 @@ class _registrationExpenseState extends State<registrationExpense> {
                     errorMessage = 'Select valid option';
                   });
                 }else{Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => insuranceType()));}
+                    MaterialPageRoute(builder: (context) => otherCharge()));}
 
               },
               color: Colors.black,

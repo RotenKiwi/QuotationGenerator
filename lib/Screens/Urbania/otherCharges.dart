@@ -51,7 +51,9 @@ class _otherChargeState extends State<otherCharge> {
               text: 'Next',
               press: () {
                 if(model.otherCharges == null){model.otherCharges=0;}
+                print("done");
                 model.totalCharges = calcTotalCharges();
+                print("done");
                 model.finalAmt = finalCharge();
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => pdfPage()));
