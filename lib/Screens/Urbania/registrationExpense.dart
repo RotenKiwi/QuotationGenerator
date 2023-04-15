@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sp_quotation/Components/TopBar.dart';
 import 'package:sp_quotation/Screens/Urbania/insuranceType.dart';
+import 'package:sp_quotation/Screens/Urbania/registrationExpenseType.dart';
 import 'package:sp_quotation/Vehicles/Urbania/Urbania.dart';
 import 'package:sp_quotation/Vehicles/Urbania/pdf/pdfpage.dart';
 import '../../Vehicles/Urbania/pdf/userDetails.dart' as user;
@@ -19,11 +20,12 @@ class registrationExpense extends StatefulWidget {
 
 String? registrationexpense;
 String errorMessage = '';
+int index = Urbania().model.indexOf(model.model!);
 
 class _registrationExpenseState extends State<registrationExpense> {
   @override
   Widget build(BuildContext context) {
-    int index = Urbania().model.indexOf(model.model!);
+
     return LayoutBuilder(builder: (context, constraints){
       return Scaffold(
         body: Column(
@@ -42,11 +44,14 @@ class _registrationExpenseState extends State<registrationExpense> {
                         registrationexpense = value.toString();
                         model.registrationExpense = value;
                         model.registrationType = 'Commercial';
-                        if(widget.insurancetype == "Priv"){model.rtoTax = (model.price!*0.146).ceil();}
-                        else if (widget.insurancetype == "T&T"){model.rtoTax = Urbania().rtoTaxTT[index];}
-                        else if (widget.insurancetype == "PPRS"){model.rtoTax = Urbania().rtoTaxStaff[index];}
-                        else{model.rtoTax = 0;}
+                        if(model.insuranceType != 'Customer'){
+                          if(widget.insurancetype == "Priv"){model.rtoTax = (model.price!*0.1475).ceil();}
+                          else if (widget.insurancetype == "T&T"){model.rtoTax = Urbania().rtoTaxTT[index];}
+                          else if (widget.insurancetype == "PPRS"){model.rtoTax = Urbania().rtoTaxStaff[index];}
+                          else{model.rtoTax = 0;}
+                        }
                       });
+                      print(model.insuranceType);
                     }),
                 SizedBox(height: 50,),
                 RadioListTile<String>(
@@ -71,7 +76,10 @@ class _registrationExpenseState extends State<registrationExpense> {
             RoundedButton(
               text: 'Next',
               press: () {
-                if(model.registrationExpense==null){
+                if(model.insuranceType == 'Customer' && model.registrationExpense == 'Dealer'){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>registrationExpenseTypeDealer()));
+                }
+                else if(model.registrationExpense==null){
                   setState(() {
                     errorMessage = 'Select valid option';
                   });

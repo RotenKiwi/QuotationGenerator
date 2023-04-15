@@ -7,8 +7,10 @@ import 'dart:io';
 import 'package:printing/printing.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
+import '../Urbania.dart';
 import 'userDetails.dart' as user;
 import 'model_info.dart' as model;
+import 'employee.dart' as emp;
 
 Future<Uint8List> generatePdf(final PdfPageFormat format) async {
   DateTime now = DateTime.now();
@@ -116,7 +118,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                   children: [
                     pw.Expanded(
                       child: pw.Text(
-                        'Quotation : SP/Urbania/${now.day}/${now.month}/${now.hour}',
+                        'Quotation : SP/Urbania/${emp.name!.substring(0, 2)}/${now.day}/${now.month}/${now.hour}',
                         style: pw.TextStyle(
                           fontWeight: pw.FontWeight.normal,
                           fontSize: 10,
@@ -167,23 +169,55 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                     ),
                   ],
                 ),
-                pw.Text(
-                  'Location : ${user.location}',
-                  style: pw.TextStyle(
-                    fontWeight: pw.FontWeight.normal,
-                    fontSize: 10,
-                    decoration: pw.TextDecoration.none,
-                    //    color: Colors.black
-                  ),
+                pw.Row(
+                  mainAxisAlignment: pw.MainAxisAlignment.center,
+                  children: [
+                    pw.Expanded(
+                      child: pw.Text(
+                        'Location : ${user.location}',
+                        style: pw.TextStyle(
+                          fontWeight: pw.FontWeight.normal,
+                          fontSize: 10,
+                          decoration: pw.TextDecoration.none,
+                          //    color: Colors.black
+                        ),
+                      ),
+                    ),
+                    pw.Text(
+                      'Bank HP : ${user.bankHP}',
+                      style: pw.TextStyle(
+                        fontWeight: pw.FontWeight.normal,
+                        fontSize: 10,
+                        decoration: pw.TextDecoration.none,
+                        //    color: Colors.black
+                      ),
+                    ),
+                  ],
                 ),
-                pw.Text(
-                  'Contact: ${user.contactNo}',
-                  style: pw.TextStyle(
-                    fontWeight: pw.FontWeight.normal,
-                    fontSize: 10,
-                    decoration: pw.TextDecoration.none,
-                    //color: Colors.black
-                  ),
+                pw.Row(
+                  mainAxisAlignment: pw.MainAxisAlignment.center,
+                  children: [
+                    pw.Expanded(
+                      child: pw.Text(
+                        'Contact : ${user.contactNo}',
+                        style: pw.TextStyle(
+                          fontWeight: pw.FontWeight.normal,
+                          fontSize: 10,
+                          decoration: pw.TextDecoration.none,
+                          //    color: Colors.black
+                        ),
+                      ),
+                    ),
+                    pw.Text(
+                      'Vehicle Color : ${model.color}',
+                      style: pw.TextStyle(
+                        fontWeight: pw.FontWeight.normal,
+                        fontSize: 10,
+                        decoration: pw.TextDecoration.none,
+                        //    color: Colors.black
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -211,7 +245,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                     pw.Expanded(
                       flex: 1,
                       child: pw.Text(
-                        'Qty',
+                        '',
                         textAlign: pw.TextAlign.center,
                         style: pw.TextStyle(
                           fontSize: 12,
@@ -243,7 +277,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                     pw.Expanded(
                       flex: 3,
                       child: pw.Text(
-                        'Ex Showroom Model',
+                        'Ex Showroom',
                         style: pw.TextStyle(
                           fontSize: 10,
                           decoration: pw.TextDecoration.none,
@@ -305,7 +339,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                     pw.Expanded(
                       flex: 3,
                       child: pw.Text(
-                        'Comprehensive Insurance for one year',
+                        (model.insuranceType=='Customer')?'Insurance: (1st Comprehensive and 3yrs Third Party)':'Insurance: (1st year Comprehensive)',
                         style: pw.TextStyle(
                           fontSize: 10,
                           decoration: pw.TextDecoration.none,
@@ -340,7 +374,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                     pw.Expanded(
                       flex: 3,
                       child: pw.Text(
-                        'CRTEMP',
+                        'CRTEMP / Disclaimer',
                         style: pw.TextStyle(
                           fontSize: 10,
                           decoration: pw.TextDecoration.none,
@@ -410,7 +444,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                     pw.Expanded(
                       flex: 3,
                       child: pw.Text(
-                        'RTO Tax (MH passing under Transport category Yellow Number plate)',
+                      (model.model == Urbania().model[0])?'RTO Expenses (MH passing White Number plate)': (model.commercialregistrationType == 'T&T')?'RTO Tax (MH passing under T & T category Yellow Number plate)' : 'RTO Tax (MH passing under PPRS category Yellow Number plate)',
                         style: pw.TextStyle(
                           fontSize: 10,
                           decoration: pw.TextDecoration.none,
@@ -440,7 +474,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                 pw.SizedBox(
                   height: 5,
                 ),
-                (model.registrationExpense == 'Dealer')?pw.Row(
+                (model.registrationExpense == 'Dealer')?(model.model != Urbania().model[0])?pw.Row(
                   children: [
                     pw.Expanded(
                       flex: 3,
@@ -471,11 +505,11 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                       ),
                     ),
                   ],
-                ):pw.Container(),
+                ):pw.Container():pw.Container(),
                 pw.SizedBox(
                   height: 5,
                 ),
-                (model.registrationType == 'Commercial')?pw.Row(
+                (model.registrationType == 'Commercial')?(model.model != Urbania().model[0])?pw.Row(
                   children: [
                     pw.Expanded(
                       flex: 3,
@@ -506,11 +540,11 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                       ),
                     ),
                   ],
-                ):pw.Container(),
+                ):pw.Container():pw.Container(),
                 pw.SizedBox(
                   height: 5,
                 ),
-                (model.registrationType == 'Commercial')?pw.Row(
+                (model.registrationType == 'Commercial')?(model.model != Urbania().model[0])?pw.Row(
                   children: [
                     pw.Expanded(
                       flex: 3,
@@ -541,11 +575,11 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                       ),
                     ),
                   ],
-                ):pw.Container(),
+                ):pw.Container():pw.Container(),
                 pw.SizedBox(
                   height: 5,
                 ),
-                (model.registrationType == 'Commercial')?
+                (model.registrationType == 'Commercial')?(model.model != Urbania().model[0])?
                 pw.Row(
                   children: [
                     pw.Expanded(
@@ -577,11 +611,11 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                       ),
                     ),
                   ],
-                ):pw.Container(),
+                ):pw.Container():pw.Container(),
                 pw.SizedBox(
                   height: 5,
                 ),
-                (model.registrationType == 'Commercial')? pw.Row(
+                (model.registrationType == 'Commercial')?(model.model != Urbania().model[0])? pw.Row(
                   children: [
                     pw.Expanded(
                       flex: 3,
@@ -612,7 +646,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                       ),
                     ),
                   ],
-                ):pw.Container(),
+                ):pw.Container():pw.Container(),
                 pw.SizedBox(
                   height: 5,
                 ),
@@ -692,7 +726,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                     pw.Expanded(
                       flex: 3,
                       child: pw.Text(
-                        'Other(If Applicable): ${model.other}',
+                        'Additional Expenses:' +  ((model.other == null)?'None': model.other!),
                         style: pw.TextStyle(
                           fontSize: 10,
                           decoration: pw.TextDecoration.none,
@@ -867,7 +901,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                   ),
                 ),
                 pw.Text(
-                  '6. Booking cancellation charges is Rs.10000/-, Odd model booking cancellation charges is Rs. 25000/-',
+                  '6. Booking cancellation charges is Rs.10000/- .',
                   style: pw.TextStyle(
                     fontWeight: pw.FontWeight.normal,
                     decoration: pw.TextDecoration.none,
@@ -903,7 +937,7 @@ Future<Uint8List> generatePdf(final PdfPageFormat format) async {
                   ),
                 ),
                 pw.Text(
-                  '10. If vehicle delivery is delayed for any reason Company will not be liabile for any compensation/penalty.',
+                  '10. If vehicle delivery is delayed for any reason Company will not be liable for any compensation/penalty.',
                   style: pw.TextStyle(
                     fontWeight: pw.FontWeight.normal,
                     decoration: pw.TextDecoration.none,

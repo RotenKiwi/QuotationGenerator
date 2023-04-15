@@ -25,6 +25,7 @@ class _UrbaniaModelSelectState extends State<UrbaniaModelSelect> {
   Widget build(BuildContext context) {
     model.model = Urbania().model[index];
     model.price = Urbania().price[index];
+    model.color = Urbania().colors[colorIndex];
     //model.insurance = (model.price! * 0.0215).ceil();
     return LayoutBuilder(
       builder: (context, constraint) {

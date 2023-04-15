@@ -28,9 +28,9 @@ class _otherChargeState extends State<otherCharge> {
             SizedBox(
               height: constraints.maxHeight * 0.07,
             ),
-            topBar(text: 'Other charges', maxWidth: constraints.maxWidth),
+            topBar(text: 'Additional Expense', maxWidth: constraints.maxWidth),
             formField(
-              text: 'Other Charges?',
+              text: '',
               horizontalPadding: 10.0,
               maxWidth: constraints.maxWidth,
               onChanged: (value) {
@@ -56,7 +56,7 @@ class _otherChargeState extends State<otherCharge> {
                 print("done");
                 model.finalAmt = finalCharge();
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => pdfPage()));
+                    MaterialPageRoute(builder: (context) => pdfPage2()));
               },
               color: Colors.black,
               textColor: Colors.white,

@@ -59,6 +59,7 @@ class _insuranceTypeState extends State<insuranceType> {
                           setState(() {
                             insurancetype = value.toString();
                             model.insuranceType = value;
+                            print(model.insuranceType);
                           });
                         }),
                   ]),

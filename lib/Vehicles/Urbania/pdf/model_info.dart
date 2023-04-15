@@ -1,3 +1,5 @@
+import 'package:sp_quotation/Vehicles/Urbania/Urbania.dart';
+
 String? model;
 int? price;
 int? insurance;
@@ -19,34 +21,56 @@ int radiumStrips = 4500;
 int gprsActivation = 12500;
 int fastTag = 700;
 int facilitatingCharges = 19500;
-int hsrp = 65500;
+int hsrp = 1500;
 
-var calcTotalCharges = (){
+var calcTotalCharges = () {
   //Dealer Insurance
-  if(insuranceType == 'Dealer'){
+  if (insuranceType == 'Dealer') {
     //registration expense by Dealer
-    if(registrationExpense == 'Dealer'){
-      return (insurance! + rtoTax! + rtoReceipts + crtemp + radiumStrips + gprsActivation + fastTag + facilitatingCharges);
+    if (registrationExpense == 'Dealer') {
+      if (model == Urbania().model[0]) {
+        return (insurance! + rtoTax! + crtemp);
+      } else {
+        return (insurance! +
+            rtoTax! +
+            rtoReceipts +
+            crtemp +
+            radiumStrips +
+            gprsActivation +
+            fastTag +
+            facilitatingCharges);
+      }
     }
     //registration expense not done by dealer
-    else{
+    else {
       return (insurance! + crtemp + hsrp);
     }
   }
 
   //Customer insurance
-  else{
+  else {
     //registration expense by Dealer
-    if(registrationExpense == 'Dealer'){
-      return (rtoTax! + rtoReceipts + crtemp + radiumStrips + gprsActivation + fastTag + facilitatingCharges);
+    if (registrationExpense == 'Dealer') {
+      if (model == Urbania().model[0]) {
+        return (rtoTax! + crtemp);
+      } else {
+        return (
+            rtoTax! +
+            rtoReceipts +
+            crtemp +
+            radiumStrips +
+            gprsActivation +
+            fastTag +
+            facilitatingCharges);
+      }
     }
     //registration expense not done by dealer
-    else{
+    else {
       return (crtemp + hsrp);
     }
   }
 };
 
-
-
-var finalCharge = (){return (totalCharges + price);};
+var finalCharge = () {
+  return (totalCharges + price);
+};

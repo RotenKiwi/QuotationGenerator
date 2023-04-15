@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sp_quotation/Screens/Urbania/otherCharges.dart';
 import 'package:sp_quotation/Screens/Urbania/registrationExpense.dart';
 
 import '../../Components/RoundedButton.dart';
@@ -6,17 +7,18 @@ import '../../Components/TopBar.dart';
 import '../../Vehicles/Urbania/Urbania.dart';
 import '../../Vehicles/Urbania/pdf/model_info.dart' as model;
 
-class insuranceTypeDealer extends StatefulWidget {
-  const insuranceTypeDealer({Key? key}) : super(key: key);
+class registrationExpenseTypeDealer extends StatefulWidget {
+  const registrationExpenseTypeDealer({Key? key}) : super(key: key);
 
   @override
-  State<insuranceTypeDealer> createState() => _insuranceTypeDealerState();
+  State<registrationExpenseTypeDealer> createState() => _registrationExpenseTypeDealerState();
 }
 
-String? insurancetype;
+String? registrationtypecheck;
 String errorMessage = '';
+int index = Urbania().model.indexOf(model.model!);
 
-class _insuranceTypeDealerState extends State<insuranceTypeDealer> {
+class _registrationExpenseTypeDealerState extends State<registrationExpenseTypeDealer> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -26,27 +28,28 @@ class _insuranceTypeDealerState extends State<insuranceTypeDealer> {
             SizedBox(
               height: constraints.maxHeight * 0.07,
             ),
-            topBar(text: 'Insurance Type', maxWidth: constraints.maxWidth),
+            topBar(text: 'Registration Type', maxWidth: constraints.maxWidth),
             Expanded(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     RadioListTile<String>(
                         title: Text(
-                          'Private Insurance',
+                          'Private Registration',
                           style: TextStyle(fontSize: 25),
                         ),
                         activeColor: Colors.black,
                         value: 'Priv',
-                        groupValue: insurancetype,
+                        groupValue: registrationtypecheck,
                         onChanged: (value) {
                           if(model.model == Urbania().model[0]){
                             setState(() {
-                              insurancetype = value.toString();
+                              registrationtypecheck = value.toString();
                               //model.insurancetype = insurancetype;
-                              model.insurance = (model.price! * 0.032).ceil();
-                              print(model.insurance);
+                              //model.insurance = (model.price! * 0.032).ceil();
+                              //print(model.insurance);
                             });
+                            print(model.insuranceType);
                           }
                           else{
                             null;
@@ -66,16 +69,17 @@ class _insuranceTypeDealerState extends State<insuranceTypeDealer> {
                         ),
                         activeColor: Colors.black,
                         value: 'T&T',
-                        groupValue: insurancetype,
+                        groupValue: registrationtypecheck,
                         onChanged: (value) {
                           if(model.model == Urbania().model[3] || model.model==Urbania().model[4]){
                             setState(() {
-                              insurancetype = value.toString();
-                              model.commercialregistrationType = insurancetype;
-                              model.insurance = (model.price! * 0.026).ceil();
-                              print(model.price);
-                              print(model.insurance);
+                              registrationtypecheck = value.toString();
+                              model.commercialregistrationType = value;
+                              //model.insurance = (model.price! * 0.026).ceil();
+                              //print(model.price);
+                              //print(model.insurance);
                             });
+                            print(model.insuranceType);
                           }
                           else{
                             null;
@@ -94,16 +98,17 @@ class _insuranceTypeDealerState extends State<insuranceTypeDealer> {
                         ),
                         activeColor: Colors.black,
                         value: 'PPRS',
-                        groupValue: insurancetype,
+                        groupValue: registrationtypecheck,
                         onChanged: (value) {
                           if(model.model != Urbania().model[0]){
                             setState(() {
-                              insurancetype = value.toString();
+                              registrationtypecheck = value.toString();
                               model.commercialregistrationType = value;
                               //model.insurancetype = insurancetype;
-                              model.insurance = (model.price! * 0.022).ceil();
-                              print(model.insurance);
+                              //model.insurance = (model.price! * 0.022).ceil();
+                              //print(model.insurance);
                             });
+                            print(model.insuranceType);
                           }
                           else{
                             null;
@@ -124,23 +129,28 @@ class _insuranceTypeDealerState extends State<insuranceTypeDealer> {
             RoundedButton(
               text: 'Next',
               press: () {
-                if (model.insuranceType == null) {
+                if (registrationtypecheck == null) {
                   setState(() {
                     errorMessage = 'Select valid choice';
                   });
                 }
-                else if (model.model != Urbania().model[0] && insurancetype == 'Priv'){
+                else if (model.model != Urbania().model[0] && registrationtypecheck == 'Priv'){
                   setState(() {
                     errorMessage = 'Private Insurance is available only for ${Urbania().model[0]}';
                   });
                 }
-                else if ((model.model == Urbania().model[1] || model.model == Urbania().model[2]) && insurancetype == 'T&T'){
+                else if ((model.model == Urbania().model[1] || model.model == Urbania().model[2]) && registrationtypecheck == 'T&T'){
                   setState(() {
                     errorMessage = 'T&T Insurance is not available for ${model.model}';
                   });
                 }
                 else {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> registrationExpense(insurancetype: insurancetype!,)));
+                  if(registrationtypecheck == "Priv"){model.rtoTax = (model.price!*0.1475).ceil();}
+                  else if (registrationtypecheck == "T&T"){model.rtoTax = Urbania().rtoTaxTT[index];}
+                  else if (registrationtypecheck == "PPRS"){model.rtoTax = Urbania().rtoTaxStaff[index];}
+                  else{model.rtoTax = 0;}
+                  print(model.rtoTax);
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> otherCharge()));
                 }
               },
               color: Colors.black,
